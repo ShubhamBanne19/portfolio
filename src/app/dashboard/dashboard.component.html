@@ -1,59 +1,124 @@
-<!-- <div> -->
-    <nav>
-        <ul>
-            <li><a href="#about">About Me</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>    
-    <header>
-        <section >  
-            <h1>Shubham Banne</h1>
-            <h2>Dynamic UI/ Frontend Developer</h2>
-            <h3>Creating scalable, responsive, and user-centric web applications.</h3>
-        </section>
-    </header>
+<div>
+        <!-- <nav>
+            <ul>
+                <li><a href="#about">About Me</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>     -->
+    
+        <header>
+            <section>
+                <h1>Shubham Banne</h1>
+                <h2>Dynamic UI/Frontend Developer</h2>
+                <h3>Creating scalable, responsive, and user-centric web applications.</h3>
+
+                <span><button (click)="navigate()">Check out PSO Game</button></span>
+            </section>
+            <canvas id="particleCanvas"></canvas>
+            
+        </header>
+        
+        
+
     <main>
         <section id="about">
             <h1>About Me</h1>
             <p>I am Shubham Banne, a dynamic UI Developer with over 2 years of professional experience in designing and deploying scalable web applications. With expertise in Angular, JavaScript, HTML, and CSS, I specialize in creating responsive, user-centric interfaces that enhance engagement and performance. My passion lies in blending creativity and technology to deliver seamless digital experiences.</p>
         </section>
+
         <section id="skills">
-            <h1>List Of Skills</h1>
-            <ol>
-                <li><h4>Programming Languages:</h4>Angular, JavaScript, HTML, CSS, Node.js</li>
-                <li><h4>Database Management:</h4>PostgreSQL</li>
-                <li><h4>Technologies & Tools:</h4>RESTful APIs, Git, GitHub, Postman, VS Code</li>
-            </ol>
+            <h1>Skills</h1>
+            <div class="skills-container">
+                <!-- Programming Languages -->
+                <div class="skill-category">
+                    <h2>Programming Languages</h2>
+                    <ul>
+                        <li>
+                            <i class="fab fa-angular"></i> Angular <span class="proficiency">Expert</span>
+                        </li>
+                        <li>
+                            <i class="fab fa-js"></i> JavaScript <span class="proficiency">Advanced</span>
+                        </li>
+                        <li>
+                            <i class="fab fa-html5"></i> HTML <span class="proficiency">Advanced</span>
+                        </li>
+                        <li>
+                            <i class="fab fa-css3-alt"></i> CSS <span class="proficiency">Advanced</span>
+                        </li>
+                        <li>
+                            <i class="fab fa-node"></i> Node.js <span class="proficiency">Intermediate</span>
+                        </li>
+                    </ul>
+                </div>
+        
+                <!-- Technologies & Tools -->
+                <div class="skill-category">
+                    <h2>Technologies & Tools</h2>
+                    <ul>
+                        <li>
+                            <i class="fas fa-server"></i> RESTful APIs <span class="proficiency">Expert</span>
+                        </li>
+                        <li>
+                            <i class="fab fa-git"></i> Git <span class="proficiency">Advanced</span>
+                        </li>
+                        <li>
+                            <i class="fab fa-github"></i> GitHub <span class="proficiency">Advanced</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-database"></i> PostgreSQL <span class="proficiency">Intermediate</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-code"></i> Visual Studio Code <span class="proficiency">Expert</span>
+                        </li>
+                    </ul>
+                </div>
+        
+                <!-- Soft Skills -->
+                <div class="skill-category">
+                    <h2>Soft Skills</h2>
+                    <ul>
+                        <li>Problem Solving</li>
+                        <li>Team Collaboration</li>
+                        <li>Agile Development</li>
+                        <li>Communication</li>
+                    </ul>
+                </div>
+            </div>
         </section>
+        
+
         <section id="experience">
-           <h1>Professional Experience</h1>
-           
-           <table>
-            <tr>
-                <th>Company Name: </th>
-                <td>Infosys Ltd., Pune</td>
-            </tr>
-            <tr>
-                <th>Role: </th>
-                <td>PEAN Stack Developer</td>
-            </tr>
-            <tr>
-                <th>Duration:</th>
-                <td>Apr 2022 – Present</td>
-            </tr>
-           </table>
-           <h2>Responsibilities:</h2>
-           <ol>
-            <li>Spearheaded full lifecycle development of web applications using Angular and Node.js, improving user engagement by 20%.</li>
-            <li>Optimized application performance, reducing load times by 30%.</li>
-            <li>Integrated third-party APIs and conducted thorough code reviews to maintain quality standards.</li>
-            <li>Designed and implemented responsive UI components for consistent experiences across devices.</li>
-            <li>Diagnosed and resolved complex technical issues to ensure enhanced user satisfaction</li>
-           </ol>
+            <h1>Professional Experience</h1>
+        
+            <!-- Job 1 -->
+            <div class="job-entry">
+                <h2>Infosys Ltd., Pune</h2>
+                <table>
+                    <tr>
+                        <th>Role:</th>
+                        <td>PEAN Stack Developer</td>
+                    </tr>
+                    <tr>
+                        <th>Duration:</th>
+                        <td>Apr 2022 – Present</td>
+                    </tr>
+                </table>
+                <h3>Responsibilities:</h3>
+                <ol>
+                    <li>Spearheaded full lifecycle development of web applications using Angular and Node.js, improving user engagement by 20%.</li>
+                    <li>Optimized application performance, reducing load times by 30%.</li>
+                    <li>Integrated third-party APIs and conducted thorough code reviews to maintain quality standards.</li>
+                    <li>Designed and implemented responsive UI components for consistent experiences across devices.</li>
+                    <li>Diagnosed and resolved complex technical issues to ensure enhanced user satisfaction.</li>
+                </ol>
+                <p class="technologies"><b>Technologies Used:</b> Angular, Node.js, Express.js, MongoDB, HTML5, CSS3, REST APIs</p>
+            </div>
         </section>
+        
+
         <section id="projects">
             <h1>Projects</h1>
             <dl>
@@ -67,6 +132,7 @@
                 <dd>Developed a dashboard to visualize water parameter patterns using both tabular data and line charts.</dd>
             </dl>
         </section>
+
         <section id="Education">
             <h1>Education</h1>
             <br>
@@ -76,7 +142,6 @@
                     <td>Bachelor of Technology</td>
                     <th>Graduation Date:</th>
                     <td>June 2020 </td>
-                    
                 </tr>
                 <tr>
                     <th>Institution:</th>
@@ -87,6 +152,7 @@
             </table>
             <br>
         </section>
+
         <section>
             <h1>Certification</h1>
             <table>
@@ -99,6 +165,7 @@
                 </dl>
             </table>
         </section>
+
         <section>
             <h1>Publications</h1>
             <dl>
@@ -110,56 +177,35 @@
             </dl>
         </section>
     </main> 
+
     <footer>
         <section id="contact">
             <h1>Get in Touch</h1>
             <table>
                 <tr>
-                    <th>
-                        Email
-                    </th>
-                    <td>
-                        {{EmailID}}
-                    </td>
+                    <th>Email</th>
+                    <td>{{EmailID}}</td>
                 </tr>
                 <tr>
-                    <th>
-                        Phone
-                    </th>
-                    <td>
-                        {{phoneNo}}
-                    </td>
+                    <th>Phone</th>
+                    <td>{{phoneNo}}</td>
                 </tr>
                 <tr>
-                    <th>
-                        Location
-                    </th>
-                    <td>
-                        {{location}}
-                    </td>
+                    <th>Location</th>
+                    <td>{{location}}</td>
                 </tr>
                 <tr>
-                    <th>
-                        LinkedIn
-                    </th>
-                    <td>
-                        {{linkedInProfile}}
-                    </td>
+                    <th>LinkedIn</th>
+                    <td>{{linkedInProfile}}</td>
                 </tr>
                 <tr>
-                    <th>
-                        GitHub
-                    </th>
-                    <td>
-                        {{gitHubProfile}}
-                    </td>
+                    <th>GitHub</th>
+                    <td>{{gitHubProfile}}</td>
                 </tr>
             </table>
             <div class="footer-content">
                 <p>&copy; 2025 Shubham Banne. All rights reserved.</p>
             </div>
-            
         </section>
     </footer>
-    
-<!-- </div> -->
+</div>

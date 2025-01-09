@@ -64,30 +64,29 @@ header {
     overflow: hidden;
 }
 
-header h1 {
-    font-size: 4rem;
+header canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+header section {
+    position: relative;
+    z-index: 1;
     color: #fff;
-    font-weight: bold;
-    letter-spacing: 2px;
-    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+header h1, header h2, header h3 {
+    margin: 10px;
     animation: fadeInHeader 2s ease-out;
 }
 
-header h2 {
-    font-size: 2rem;
-    color: #fff;
-    margin-top: 20px;
-    opacity: 0;
-    animation: fadeInText 2s ease-out 1s forwards;
-}
 
-header h3 {
-    font-size: 1.5rem;
-    color: #fff;
-    margin-top: 10px;
-    opacity: 0;
-    animation: fadeInText 2s ease-out 2s forwards;
-}
+
+
 section p {
     font-size: 1rem;
     line-height: 1.6;
@@ -95,9 +94,142 @@ section p {
     margin: 0 auto;
 }
 
-.skill {
-    margin-bottom: 30px;
+
+/* Skills Section */
+#skills {
+    padding: 50px 20px;
+    background: #f8f9fa;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    margin: 50px 0;
+    text-align: center;
 }
+
+.skills-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.skill-category {
+    flex: 1 1 300px;
+    padding: 20px;
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.skill-category:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.skill-category h2 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: #ff7e5f;
+}
+
+.skill-category ul {
+    list-style: none;
+    padding: 0;
+}
+
+.skill-category li {
+    display: flex;
+    align-items: center;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.skill-category li i {
+    font-size: 1.5rem;
+    margin-right: 10px;
+    color: #ff7e5f;
+}
+
+.skill-category .proficiency {
+    margin-left: auto;
+    padding: 5px 10px;
+    background: #ff7e5f;
+    color: #fff;
+    border-radius: 5px;
+    font-size: 0.9rem;
+}
+
+.skill-category:hover .proficiency {
+    background: #feb47b;
+}
+
+#experience {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#experience h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    color: #333;
+}
+
+.job-entry {
+    margin-bottom: 2rem;
+    padding: 15px;
+    background: #fff;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.job-entry h2 {
+    font-size: 1.5rem;
+    color: #0078d7;
+}
+
+.job-entry table {
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.job-entry th {
+    text-align: left;
+    padding: 5px;
+    color: #555;
+}
+
+.job-entry td {
+    padding: 5px;
+    color: #333;
+}
+
+.job-entry h3 {
+    font-size: 1.25rem;
+    margin-top: 1rem;
+}
+
+.job-entry ol {
+    padding-left: 20px;
+    color: #333;
+}
+
+.technologies {
+    font-style: italic;
+    color: #555;
+}
+
+/* Responsive Adjustments */
+@media screen and (max-width: 768px) {
+    .skills-container {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
 
 .progress-bar {
     background-color: #ddd;
@@ -187,7 +319,7 @@ form button {
 }
 
 form button:hover {
-    background-color: #ff2a00;
+    /* background-color: #ff2a00; */
 }
 
 /* Preload spinner */
@@ -384,8 +516,8 @@ footer {
 }
 
 footer:hover {
-    background-color: #ff7e5f;
-    color: #fff;
+    /* background-color: #ff7e5f; */
+    /* color: #fff; */
 }
 
 footer table {
