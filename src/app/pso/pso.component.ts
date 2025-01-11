@@ -1,7 +1,5 @@
 import { AfterViewInit, Component, HostListener } from '@angular/core';
 
-
-
 @Component({
   selector: 'app-pso',
   templateUrl: './pso.component.html',
@@ -11,15 +9,19 @@ export class PSOComponent implements AfterViewInit {
   private canvas!: HTMLCanvasElement;
   private ctx!: CanvasRenderingContext2D | null;
   private particles: GameParticle[] = [];
-  private numParticles = 100;
   private score = 0;
   private gameActive = false;
-  private maxScore = 10;
   private timer: any;
-  private timerDuration = 60; // 1 minute timer
-  private timeLeft = this.timerDuration;
+  private timeLeft!: number;
   private startTime!: number;
-  private bestTime: number | null = null; // Store best time
+  private bestTime: number | null = null;
+
+  private config = {
+    numParticles: 100,
+    maxScore: 10,
+    timerDuration: 60,
+    particleSpeed: 1,
+  };
 
   ngAfterViewInit(): void {
     this.canvas = document.getElementById('particleCanvas') as HTMLCanvasElement;
@@ -29,7 +31,6 @@ export class PSOComponent implements AfterViewInit {
     this.canvas.width = window.innerWidth;
     this.canvas.height = window.innerHeight;
 
-    // Load best time from localStorage
     const storedBestTime = localStorage.getItem('bestTime');
     if (storedBestTime) {
       this.bestTime = parseFloat(storedBestTime);
@@ -37,6 +38,7 @@ export class PSOComponent implements AfterViewInit {
     }
 
     document.getElementById('startButton')?.addEventListener('click', () => this.startGame());
+    document.getElementById('applyConfig')?.addEventListener('click', () => this.applyConfiguration());
     this.canvas.addEventListener('click', (e) => this.handleClick(e));
     this.animate();
   }
@@ -47,36 +49,47 @@ export class PSOComponent implements AfterViewInit {
     this.canvas.height = window.innerHeight;
   }
 
+  private applyConfiguration(): void {
+    const numParticlesInput = document.getElementById('numParticles') as HTMLInputElement;
+    const maxScoreInput = document.getElementById('maxScore') as HTMLInputElement;
+    const timerDurationInput = document.getElementById('timerDuration') as HTMLInputElement;
+    const particleSpeedInput = document.getElementById('particleSpeed') as HTMLInputElement;
+
+    this.config.numParticles = parseInt(numParticlesInput.value, 10);
+    this.config.maxScore = parseInt(maxScoreInput.value, 10);
+    this.config.timerDuration = parseInt(timerDurationInput.value, 10);
+    this.config.particleSpeed = parseFloat(particleSpeedInput.value);
+  }
+
   private startGame(): void {
+    this.applyConfiguration();
     this.score = 0;
     this.gameActive = true;
-    this.timeLeft = this.timerDuration;
-    this.startTime = Date.now(); // Record the start time
+    this.timeLeft = this.config.timerDuration;
+    this.startTime = Date.now();
     this.particles = [];
-    for (let i = 0; i < this.numParticles; i++) {
-        this.particles.push(new GameParticle(this.canvas));
+    for (let i = 0; i < this.config.numParticles; i++) {
+      this.particles.push(new GameParticle(this.canvas, this.config.particleSpeed));
     }
 
     document.getElementById('score')!.textContent = '0';
     document.getElementById('gameMessage')!.textContent = '';
     document.getElementById('timer')!.textContent = `Time Left: ${this.timeLeft}s`;
 
-    // Start Timer
     if (this.timer) {
-        clearInterval(this.timer); // Clear any previous timer
+      clearInterval(this.timer);
     }
 
     this.timer = setInterval(() => {
-        this.timeLeft--;
-        document.getElementById('timer')!.textContent = `Time Left: ${this.timeLeft}s`;
+      this.timeLeft--;
+      document.getElementById('timer')!.textContent = `Time Left: ${this.timeLeft}s`;
 
-        if (this.timeLeft <= 0) {
-            clearInterval(this.timer); // Stop the timer when it reaches zero
-            this.endGame('Try Once Again!');
-        }
+      if (this.timeLeft <= 0) {
+        clearInterval(this.timer);
+        this.endGame('Try Once Again!');
+      }
     }, 1000);
-}
-
+  }
 
   private handleClick(event: MouseEvent): void {
     if (!this.gameActive) return;
@@ -90,8 +103,8 @@ export class PSOComponent implements AfterViewInit {
         this.score += particle.getScore();
         document.getElementById('score')!.textContent = this.score.toString();
 
-        if (this.score >= this.maxScore) {
-          const timeTaken = (Date.now() - this.startTime) / 1000; // Calculate time in seconds
+        if (this.score >= this.config.maxScore) {
+          const timeTaken = (Date.now() - this.startTime) / 1000;
           this.updateBestTime(timeTaken);
           this.endGame('You Win!');
         }
@@ -101,15 +114,13 @@ export class PSOComponent implements AfterViewInit {
 
   private endGame(message: string): void {
     this.gameActive = false;
-    clearInterval(this.timer); // Stop the timer
+    clearInterval(this.timer);
     document.getElementById('gameMessage')!.textContent = message;
   }
 
   private updateBestTime(timeTaken: number): void {
     if (this.bestTime === null || timeTaken < this.bestTime) {
       this.bestTime = timeTaken;
-
-      // Save the best time in localStorage
       localStorage.setItem('bestTime', this.bestTime.toString());
       this.updateBestTimeDisplay();
     }
@@ -148,13 +159,12 @@ class GameParticle {
   size: number;
   color: string;
   type: string;
-  clicked: boolean = false; // Track whether this particle has been clicked
 
-  constructor(private canvas: HTMLCanvasElement) {
+  constructor(private canvas: HTMLCanvasElement, private speed: number = 1) {
     this.x = Math.random() * canvas.width;
     this.y = Math.random() * canvas.height;
-    this.vx = Math.random() * 2 - 1;
-    this.vy = Math.random() * 2 - 1;
+    this.vx = (Math.random() * 2 - 1) * speed;
+    this.vy = (Math.random() * 2 - 1) * speed;
     this.size = Math.random() * 5 + 5;
     this.type = this.getType();
     this.color = this.getColor();
@@ -180,19 +190,14 @@ class GameParticle {
   }
 
   getScore(): number {
-    if (this.clicked) {
-      return 0; // No score for already clicked particles
-    }
-
-    this.clicked = true; // Mark this particle as clicked
-    return this.type === 'gold' ? 0 : this.type === 'red' ? -1 : 1;
+    return this.type === 'gold' ? 2 : this.type === 'red' ? -1 : 1;
   }
 
   private getType(): string {
     const rand = Math.random();
-    if (rand < 0.1) return 'gold'; // 10% chance
-    if (rand < 0.2) return 'red';  // 10% chance
-    return 'regular';             // 80% chance
+    if (rand < 0.1) return 'gold';
+    if (rand < 0.2) return 'red';
+    return 'regular';
   }
 
   private getColor(): string {
@@ -203,4 +208,3 @@ class GameParticle {
     }
   }
 }
-

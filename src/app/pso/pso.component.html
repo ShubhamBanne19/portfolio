@@ -1,5 +1,28 @@
 <header>
     <section>
+        <section>
+            <h2>Game Configuration</h2>
+            <form id="gameConfigForm">
+              <label>
+                Number of Particles:
+                <input type="number" id="numParticles" min="10" max="500" value="100" />
+              </label>
+              <label>
+                Max Score:
+                <input type="number" id="maxScore" min="5" max="50" value="10" />
+              </label>
+              <label>
+                Timer Duration (seconds):
+                <input type="number" id="timerDuration" min="10" max="300" value="60" />
+              </label>
+              <label>
+                Particle Speed:
+                <input type="number" id="particleSpeed" min="1" max="10" step="0.1" value="1" />
+              </label>
+              <button type="button" id="applyConfig">Apply Configuration</button>
+            </form>
+          </section>
+          
     
       <h1>Particle Gamification</h1>
       <div class="info-icon" matTooltip="Rules: 
