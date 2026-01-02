@@ -1,0 +1,13 @@
+<article class="card" appReveal>
+  <header class="card-header">
+    <h3 class="card-title">{{ project.title }}</h3>
+    <p class="card-role" *ngIf="project.role">{{ project.role }}</p>
+  </header>
+
+  <p class="card-short">{{ project.short }}</p>
+
+  <footer class="card-meta">
+    <span class="card-tags" *ngIf="tags">{{ tags }}</span>
+    <a *ngIf="project.caseStudy" [routerLink]="project.caseStudy" class="card-link">Read →</a>
+  </footer>
+</article>
