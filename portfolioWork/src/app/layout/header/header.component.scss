@@ -1,0 +1,15 @@
+.header{
+    display:flex;
+    justify-content: space-between;
+    padding: 1.5rem 3rem;
+    position: sticky;
+    top: 0;
+    background: #0e0e0e;
+    z-index: 10;
+}
+a{
+    color: #fff;
+    text-decoration:none;
+    margin-left: 2rem; 
+    font-weight: 500;
+}

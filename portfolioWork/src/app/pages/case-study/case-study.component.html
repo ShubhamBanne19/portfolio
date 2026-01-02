@@ -1,0 +1,11 @@
+<article class="project">
+      <h2>{{ project.title }}</h2>
+      <h3>{{ project.subtitle }}</h3>
+      <p>{{ project.description }}</p>
+
+      <ul>
+        <li *ngFor="let tech of project.tech">{{ tech }}</li>
+      </ul>
+
+      <a [routerLink]="['/project', project.id]">View Case Study →</a>
+    </article>
