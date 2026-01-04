@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.seo.setSeo({
-      title: 'Portfolio — Home',
+      title: 'Shubham Banne',
       description: 'Frontend Engineer portfolio — projects, experience and skills.'
     });
   }
