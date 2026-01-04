@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/portfolio-work",
+            "outputPath": "docs",
             "baseHref": "/portfolio/",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -91,12 +91,6 @@
               "src/styles.css"
             ],
             "scripts": []
-          }
-        },
-        "deploy": {
-          "builder": "angular-cli-ghpages:deploy",
-          "options": {
-            "directory": "dist/portfolio-work"
           }
         }
       }
