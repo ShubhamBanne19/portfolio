@@ -1,45 +1,29 @@
+<!-- CINEMATIC HERO ANIMATION: Premium Portfolio Opener -->
+<!-- <app-hero-animation
+  #heroAnimation
+  [profileName]="profile.name"
+  [roles]="['Senior Angular Developer', 'Technology Analyst']"
+  [autoPlay]="enableHeroAnimation"
+  [enableLoop]="false"
+  (animationComplete)="onHeroAnimationComplete()"
+>
+</app-hero-animation> -->
+
 <main class="home" role="main" aria-labelledby="hero-title">
-  <!-- HERO -->
+  <!-- HERO SECTION: Original Profile Hero with Photo -->
   <section class="hero" appReveal>
     <div class="hero-inner">
-      <!-- <h1 id="hero-title" class="hero-title">
-  <svg
-    class="hero-icon"
-    viewBox="0 0 100 100"
-    aria-hidden="true"
-    focusable="false"
-  >
-    <path
-      d="M50 5L89 27.5V72.5L50 95L11 72.5V27.5L50 5Z"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="4"
-      stroke-linejoin="round"
-    />
-  </svg>
-
-  Shubham Banne
-</h1>
-
-   
-      <p class="hero-headline" aria-live="polite">{{ profile.headline }}</p> -->
       <h1 id="hero-title" class="hero-title">
-        <svg
-          class="hero-icon"
-          viewBox="0 0 100 100"
-          aria-hidden="true"
-          focusable="false"
-        >
-          <path
-            d="M50 5L89 27.5V72.5L50 95L11 72.5V27.5L50 5Z"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="4"
-            stroke-linejoin="round"
+        <div class="hero-icon-wrapper">
+          <img
+            src="assets/shubhamProfile.jpeg"
+            alt="Shubham Banne"
+            class="hero-avatar"
           />
-        </svg>
-
-        <span class="hero-logo-text">Shubham Sanjay Banne</span>
+        </div>
+        <span class="hero-logo-text" data-text="Shubham Sanjay Banne">
+          Shubham Sanjay Banne
+        </span>
       </h1>
 
       <p class="hero-headline" aria-live="polite">
@@ -48,8 +32,8 @@
 
       <p class="hero-tagline">{{ profile.shortTagline }}</p>
       <p class="hero-summary">{{ profile.summary }}</p>
+
       <div class="hero-contact-card">
-        <!-- <h3>Contact Information</h3> -->
         <ul class="contact-information">
           <li>
             <a class="hero-contact">
@@ -127,7 +111,6 @@
       </nav>
     </div>
   </section>
-
   <!-- EXPERIENCE -->
   <section class="experience" aria-labelledby="experience-heading" appReveal>
     <h2 id="experience-heading" class="section-title">Experience</h2>

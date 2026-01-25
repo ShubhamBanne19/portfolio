@@ -22,7 +22,7 @@ import { ProjectCardComponent } from './pages/project-card/project-card.componen
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    SharedModule
+    SharedModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
