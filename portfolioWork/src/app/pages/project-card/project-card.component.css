@@ -1,34 +1,94 @@
+/* ========================================
+   PROJECT CARD — UNIFIED GLASS STYLING
+   Consistent with global glass system
+======================================== */
+
 .card {
-  background: rgba(255,255,255,0.02);
-  padding: 1rem;
-  border-radius: 8px;
-  border: 1px solid rgba(255,255,255,0.02);
+  /* Unified glass card styling */
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.03) 0%,
+    rgba(255, 255, 255, 0.01) 100%
+  );
+  padding: 1.25rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
+  gap: 0.8rem;
+  
+  /* Glass depth effect */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 
+    0 0 1px rgba(255, 255, 255, 0.05),
+    0 4px 12px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.02);
+  
+  /* Smooth transitions */
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.card:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(255, 255, 255, 0.015) 100%
+  );
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 
+    0 0 1px rgba(255, 255, 255, 0.08),
+    0 8px 20px rgba(0, 0, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  transform: translateY(-2px);
+}
+
+/* ===== CARD TITLE ===== */
 .card .card-title {
-  font-weight: 600;
-  color: #fff;
+  font-weight: 700;
+  color: #ffffff;
   margin: 0;
+  font-size: 1rem;
+  letter-spacing: -0.01em;
+  transition: all 0.3s ease;
 }
 
+.card:hover .card-title {
+  color: #60a5fa;
+}
+
+/* ===== CARD SHORT DESC ===== */
 .card .card-short {
-  color: rgba(255,255,255,0.75);
+  color: rgba(255, 255, 255, 0.78);
   margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
 }
 
+/* ===== CARD META ===== */
 .card .card-meta {
   display: flex;
   justify-content: space-between;
   gap: 0.5rem;
   align-items: center;
-  color: rgba(255,255,255,0.56);
+  color: rgba(255, 255, 255, 0.52);
+  font-size: 0.85rem;
+  margin-top: auto;
+  padding-top: 0.8rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
+/* ===== CARD LINK ===== */
 .card .card-link {
   text-decoration: none;
-  color: #bfe0ff;
-  font-weight: 600;
+  color: #60a5fa;
+  font-weight: 700;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  letter-spacing: 0.01em;
+}
+
+.card .card-link:hover {
+  color: #7dd3fc;
+  transform: translateX(2px);
 }

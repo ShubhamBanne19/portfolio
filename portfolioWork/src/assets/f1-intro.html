@@ -1,0 +1,484 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>F1 Cinematic Intro</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: #000;
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      }
+      canvas {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@r128/examples/js/postprocessing/EffectComposer.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@r128/examples/js/postprocessing/RenderPass.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@r128/examples/js/postprocessing/UnrealBloomPass.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@r128/examples/js/shaders/LuminosityHighPassShader.js"></script>
+    <script>
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(
+        75,
+        window.innerWidth / window.innerHeight,
+        0.1,
+        10000,
+      );
+      const renderer = new THREE.WebGLRenderer({ antialias: true });
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setClearColor(0x000000);
+      renderer.shadowMap.enabled = true;
+      renderer.shadowMap.type = THREE.PCFShadowShadowMap;
+      document.body.appendChild(renderer.domElement);
+
+      const composer = new THREE.EffectComposer(renderer);
+      const renderPass = new THREE.RenderPass(scene, camera);
+      composer.addPass(renderPass);
+      const bloomPass = new THREE.UnrealBloomPass(
+        new THREE.Vector2(window.innerWidth, window.innerHeight),
+        0.8,
+        0.4,
+        0.85,
+      );
+      composer.addPass(bloomPass);
+
+      camera.position.set(0, 1.2, 4);
+      camera.lookAt(0, 0.5, 0);
+
+      const ambientLight = new THREE.AmbientLight(0x1a1a2e, 0.2);
+      scene.add(ambientLight);
+
+      const directionalLight = new THREE.DirectionalLight(0xffffff, 1.2);
+      directionalLight.position.set(5, 8, 10);
+      directionalLight.castShadow = true;
+      directionalLight.shadow.mapSize.width = 2048;
+      directionalLight.shadow.mapSize.height = 2048;
+      directionalLight.shadow.camera.left = -20;
+      directionalLight.shadow.camera.right = 20;
+      directionalLight.shadow.camera.top = 20;
+      directionalLight.shadow.camera.bottom = -20;
+      scene.add(directionalLight);
+
+      const rimLight = new THREE.DirectionalLight(0x0099ff, 0.6);
+      rimLight.position.set(-8, 4, 5);
+      scene.add(rimLight);
+
+      scene.fog = new THREE.Fog(0x000000, 2, 50);
+
+      function createF1Car() {
+        const carGroup = new THREE.Group();
+
+        const bodyGeometry = new THREE.BoxGeometry(0.4, 0.3, 1.2);
+        const bodyMaterial = new THREE.MeshStandardMaterial({
+          color: 0xff0000,
+          metalness: 0.7,
+          roughness: 0.2,
+          emissive: 0x330000,
+        });
+        const body = new THREE.Mesh(bodyGeometry, bodyMaterial);
+        body.position.z = 0;
+        body.castShadow = true;
+        carGroup.add(body);
+
+        const noseGeometry = new THREE.ConeGeometry(0.15, 0.5, 8);
+        const noseMaterial = new THREE.MeshStandardMaterial({
+          color: 0xcc0000,
+          metalness: 0.8,
+          roughness: 0.15,
+        });
+        const nose = new THREE.Mesh(noseGeometry, noseMaterial);
+        nose.position.z = 0.95;
+        nose.rotation.x = -Math.PI / 2;
+        nose.castShadow = true;
+        carGroup.add(nose);
+
+        const cockpitGeometry = new THREE.BoxGeometry(0.2, 0.15, 0.3);
+        const cockpitMaterial = new THREE.MeshStandardMaterial({
+          color: 0x330000,
+          metalness: 0.6,
+          roughness: 0.3,
+        });
+        const cockpit = new THREE.Mesh(cockpitGeometry, cockpitMaterial);
+        cockpit.position.set(0, 0.1, -0.2);
+        cockpit.castShadow = true;
+        carGroup.add(cockpit);
+
+        const wingGeometry = new THREE.BoxGeometry(0.6, 0.08, 0.25);
+        const wingMaterial = new THREE.MeshStandardMaterial({
+          color: 0xff0000,
+          metalness: 0.5,
+          roughness: 0.4,
+        });
+        const rearWing = new THREE.Mesh(wingGeometry, wingMaterial);
+        rearWing.position.set(0, 0.2, -0.5);
+        rearWing.castShadow = true;
+        carGroup.add(rearWing);
+
+        function createWheel() {
+          const wheelGroup = new THREE.Group();
+          const rimGeometry = new THREE.CylinderGeometry(0.2, 0.2, 0.12, 16);
+          const rimMaterial = new THREE.MeshStandardMaterial({
+            color: 0x222222,
+            metalness: 0.9,
+            roughness: 0.1,
+          });
+          const rim = new THREE.Mesh(rimGeometry, rimMaterial);
+          rim.rotation.z = Math.PI / 2;
+          rim.castShadow = true;
+          wheelGroup.add(rim);
+
+          const tireGeometry = new THREE.TorusGeometry(0.2, 0.08, 8, 16);
+          const tireMaterial = new THREE.MeshStandardMaterial({
+            color: 0x111111,
+            metalness: 0.3,
+            roughness: 0.8,
+          });
+          const tire = new THREE.Mesh(tireGeometry, tireMaterial);
+          tire.rotation.y = Math.PI / 2;
+          tire.castShadow = true;
+          wheelGroup.add(tire);
+
+          return wheelGroup;
+        }
+
+        const wheelFL = createWheel();
+        wheelFL.position.set(-0.18, -0.12, 0.25);
+        carGroup.add(wheelFL);
+
+        const wheelFR = createWheel();
+        wheelFR.position.set(0.18, -0.12, 0.25);
+        carGroup.add(wheelFR);
+
+        const wheelRL = createWheel();
+        wheelRL.position.set(-0.18, -0.12, -0.45);
+        carGroup.add(wheelRL);
+
+        const wheelRR = createWheel();
+        wheelRR.position.set(0.18, -0.12, -0.45);
+        carGroup.add(wheelRR);
+
+        return carGroup;
+      }
+
+      const car = createF1Car();
+      car.position.set(-8, 0.4, 0);
+      scene.add(car);
+
+      class SmokeParticle {
+        constructor() {
+          this.geometry = new THREE.BufferGeometry();
+          const positions = new Float32Array([
+            -0.15, -0.15, 0, 0.15, -0.15, 0, 0.15, 0.15, 0, -0.15, 0.15, 0,
+          ]);
+          const indices = new Uint16Array([0, 1, 2, 0, 2, 3]);
+          this.geometry.setAttribute(
+            "position",
+            new THREE.BufferAttribute(positions, 3),
+          );
+          this.geometry.setIndex(new THREE.BufferAttribute(indices, 1));
+
+          this.material = new THREE.MeshBasicMaterial({
+            color: 0xffffff,
+            transparent: true,
+            opacity: 0.6,
+            blending: THREE.AdditiveBlending,
+            depthWrite: false,
+          });
+
+          this.mesh = new THREE.Mesh(this.geometry, this.material);
+          this.position = new THREE.Vector3();
+          this.velocity = new THREE.Vector3();
+          this.life = 1;
+          this.lifeMax = 1;
+          this.scale = 1;
+        }
+
+        update(dt) {
+          this.life -= dt;
+          this.position.addScaledVector(this.velocity, dt);
+          this.velocity.y += 0.5 * dt;
+          this.velocity.multiplyScalar(0.98);
+
+          const progress = 1 - this.life / this.lifeMax;
+          this.scale = 0.5 + progress * 2;
+          this.material.opacity = 0.6 * (1 - progress);
+
+          this.mesh.position.copy(this.position);
+          this.mesh.scale.set(this.scale, this.scale, this.scale);
+        }
+
+        isAlive() {
+          return this.life > 0;
+        }
+      }
+
+      const smokeParticles = [];
+
+      function emitSmoke(position, count = 3) {
+        for (let i = 0; i < count; i++) {
+          const particle = new SmokeParticle();
+          particle.position.copy(position);
+          particle.velocity.set(
+            (Math.random() - 0.5) * 2,
+            Math.random() * 1.5,
+            (Math.random() - 0.5) * 2,
+          );
+          particle.lifeMax = 2 + Math.random();
+          particle.life = particle.lifeMax;
+          particle.mesh.castShadow = true;
+          scene.add(particle.mesh);
+          smokeParticles.push(particle);
+        }
+      }
+
+      function createMotionBlurStreak(position, direction) {
+        const streakGeometry = new THREE.PlaneGeometry(3, 0.3);
+        const streakMaterial = new THREE.MeshBasicMaterial({
+          color: 0xff0000,
+          transparent: true,
+          opacity: 0.15,
+          blending: THREE.AdditiveBlending,
+          depthWrite: false,
+        });
+        const streak = new THREE.Mesh(streakGeometry, streakMaterial);
+        streak.position.copy(position);
+        streak.lookAt(position.clone().add(direction));
+        scene.add(streak);
+
+        return {
+          mesh: streak,
+          life: 0.1,
+          dispose() {
+            scene.remove(streak);
+            streakGeometry.dispose();
+            streakMaterial.dispose();
+          },
+        };
+      }
+
+      const motionStreaks = [];
+      const cameraShakeState = {
+        intensity: 0,
+        originalPos: camera.position.clone(),
+      };
+
+      function updateCameraShake(dt) {
+        cameraShakeState.intensity -= dt * 0.5;
+        if (cameraShakeState.intensity < 0) cameraShakeState.intensity = 0;
+
+        if (cameraShakeState.intensity > 0) {
+          camera.position.x =
+            cameraShakeState.originalPos.x +
+            (Math.random() - 0.5) * cameraShakeState.intensity;
+          camera.position.y =
+            cameraShakeState.originalPos.y +
+            (Math.random() - 0.5) * cameraShakeState.intensity;
+          camera.position.z =
+            cameraShakeState.originalPos.z +
+            (Math.random() - 0.5) * cameraShakeState.intensity * 0.5;
+        } else {
+          camera.position.copy(cameraShakeState.originalPos);
+        }
+      }
+
+      let animationTime = 0;
+      const animationDuration = 14;
+      let titleGroup = null;
+
+      function createTitle() {
+        titleGroup = new THREE.Group();
+
+        const canvas = document.createElement("canvas");
+        canvas.width = 2048;
+        canvas.height = 512;
+        const ctx = canvas.getContext("2d");
+
+        ctx.fillStyle = "#ffffff";
+        ctx.font = "bold 200px Arial";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.fillText(
+          "SHUBHAM SANJAY BANNE",
+          canvas.width / 2,
+          canvas.height / 2,
+        );
+
+        const texture = new THREE.CanvasTexture(canvas);
+        const material = new THREE.MeshBasicMaterial({
+          map: texture,
+          transparent: true,
+          emissive: 0xffffff,
+          emissiveIntensity: 0,
+        });
+
+        const geometry = new THREE.PlaneGeometry(8, 2);
+        const titleMesh = new THREE.Mesh(geometry, material);
+        titleMesh.position.z = 0.5;
+
+        titleGroup.add(titleMesh);
+        titleGroup.position.y = 0;
+        titleGroup.position.z = 2;
+
+        return titleGroup;
+      }
+
+      const animationTimeline = {
+        carAccelerate: { start: 0, end: 6 },
+        smokeExpand: { start: 3, end: 8 },
+        smokeDissipate: { start: 8, end: 10.5 },
+        titleReveal: { start: 9.5, end: 11.5 },
+        titleHold: { start: 11.5, end: 14 },
+      };
+
+      function animate() {
+        const dt = 1 / 60;
+        animationTime += dt;
+
+        const carAccelProgress = Math.max(
+          0,
+          Math.min(
+            1,
+            (animationTime - animationTimeline.carAccelerate.start) /
+              (animationTimeline.carAccelerate.end -
+                animationTimeline.carAccelerate.start),
+          ),
+        );
+        const carNewX = -8 + carAccelProgress * 10;
+        car.position.x = carNewX;
+
+        const wheelRotation = (carAccelProgress * 15) % (Math.PI * 2);
+        car.children.forEach((child, index) => {
+          if (index >= 4) {
+            child.rotation.z += 0.3;
+          }
+        });
+
+        if (carAccelProgress > 0 && carAccelProgress < 1) {
+          if (Math.random() > 0.6) {
+            emitSmoke(
+              car.position.clone().add(new THREE.Vector3(0, -0.2, -0.8)),
+              2,
+            );
+          }
+          if (Math.random() > 0.8) {
+            const direction = new THREE.Vector3(-1, 0, 0);
+            motionStreaks.push(
+              createMotionBlurStreak(car.position.clone(), direction),
+            );
+          }
+          cameraShakeState.intensity = Math.max(
+            cameraShakeState.intensity,
+            carAccelProgress * 0.1,
+          );
+        }
+
+        const smokeExpandProgress = Math.max(
+          0,
+          Math.min(
+            1,
+            (animationTime - animationTimeline.smokeExpand.start) /
+              (animationTimeline.smokeExpand.end -
+                animationTimeline.smokeExpand.start),
+          ),
+        );
+        const smokeDissipateProgress = Math.max(
+          0,
+          Math.min(
+            1,
+            (animationTime - animationTimeline.smokeDissipate.start) /
+              (animationTimeline.smokeDissipate.end -
+                animationTimeline.smokeDissipate.start),
+          ),
+        );
+
+        if (smokeExpandProgress > 0 && smokeExpandProgress < 1) {
+          emitSmoke(car.position.clone().add(new THREE.Vector3(0, 0.5, -1)), 4);
+          scene.fog.near = 2 - smokeExpandProgress * 1.5;
+          scene.fog.far = 50 - smokeExpandProgress * 40;
+        }
+
+        if (smokeDissipateProgress > 0) {
+          scene.fog.near = Math.max(0.5, 0.5 - smokeDissipateProgress * 0.5);
+          scene.fog.far = 10 + smokeDissipateProgress * 40;
+        }
+
+        smokeParticles.forEach((particle, index) => {
+          particle.update(dt);
+          if (!particle.isAlive()) {
+            scene.remove(particle.mesh);
+            particle.geometry.dispose();
+            particle.material.dispose();
+            smokeParticles.splice(index, 1);
+          }
+        });
+
+        motionStreaks.forEach((streak, index) => {
+          streak.life -= dt;
+          if (streak.life <= 0) {
+            streak.dispose();
+            motionStreaks.splice(index, 1);
+          }
+        });
+
+        if (
+          animationTime > animationTimeline.titleReveal.start &&
+          !titleGroup
+        ) {
+          titleGroup = createTitle();
+          scene.add(titleGroup);
+        }
+
+        if (titleGroup) {
+          const titleRevealProgress = Math.max(
+            0,
+            Math.min(
+              1,
+              (animationTime - animationTimeline.titleReveal.start) /
+                (animationTimeline.titleReveal.end -
+                  animationTimeline.titleReveal.start),
+            ),
+          );
+
+          titleGroup.children[0].material.opacity = titleRevealProgress;
+          titleGroup.children[0].material.emissiveIntensity =
+            titleRevealProgress * 0.3;
+
+          const scale = 0.8 + titleRevealProgress * 0.4;
+          titleGroup.scale.set(scale, scale, scale);
+        }
+
+        updateCameraShake(dt);
+
+        composer.render();
+
+        if (animationTime < animationDuration) {
+          requestAnimationFrame(animate);
+        }
+      }
+
+      window.addEventListener("resize", () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        composer.setSize(window.innerWidth, window.innerHeight);
+      });
+
+      animate();
+    </script>
+  </body>
+</html>
