@@ -1,0 +1,144 @@
+<main class="contact" role="main" aria-labelledby="contact-heading">
+  <!-- HERO SECTION -->
+  <section class="contact-hero" appReveal>
+    <div class="contact-hero-inner">
+      <h1 id="contact-heading" class="contact-title">
+        {{ contactData.headline }}
+      </h1>
+      <p class="contact-intro">
+        {{ contactData.introduction }}
+      </p>
+    </div>
+  </section>
+
+  <!-- CONTACT SECTIONS -->
+  <section
+    class="contact-sections"
+    aria-labelledby="contact-methods-heading"
+    appReveal
+  >
+    <h2 id="contact-methods-heading" class="visually-hidden">
+      Contact Methods
+    </h2>
+
+    <div class="sections-grid">
+      <article
+        *ngFor="let section of contactData.sections; trackBy: trackBySection"
+        class="contact-card"
+        [attr.aria-label]="section.title"
+      >
+        <h3 class="card-title">{{ section.title }}</h3>
+        <p class="card-description">{{ section.description }}</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ACTION BUTTONS -->
+  <section
+    class="contact-actions"
+    aria-labelledby="contact-buttons-heading"
+    appReveal
+  >
+    <h2 id="contact-buttons-heading" class="visually-hidden">
+      Contact Actions
+    </h2>
+
+    <nav class="button-container">
+      <a
+        *ngFor="let btn of contactData.buttons; trackBy: trackByButton"
+        [href]="btn.url"
+        [target]="btn.external ? '_blank' : '_self'"
+        [rel]="btn.external ? 'noopener noreferrer' : ''"
+        class="btn btn-primary contact-btn"
+        [attr.aria-label]="
+          btn.label + (btn.external ? ' (opens in new tab)' : '')
+        "
+      >
+        <span class="btn-label">{{ btn.label }}</span>
+        <svg
+          *ngIf="btn.external"
+          class="btn-icon"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path
+            d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83l1.41 1.41L19 6.41V10h2V3h-7z"
+          />
+        </svg>
+      </a>
+    </nav>
+  </section>
+
+  <!-- ADDITIONAL CONTACT INFO -->
+  <section class="contact-info" appReveal>
+    <h2 class="section-title">Other Ways to Reach Me</h2>
+
+    <div class="contact-details">
+      <div class="detail-item">
+        <h3 class="detail-label">Email</h3>
+        <a href="mailto:shubhambanne.work@gmail.com" class="detail-link">
+          shubhambanne.work@gmail.com
+        </a>
+      </div>
+
+      <div class="detail-item">
+        <h3 class="detail-label">Phone</h3>
+        <a href="tel:+918999661297" class="detail-link"> +91 8999661297 </a>
+      </div>
+
+      <div class="detail-item">
+        <h3 class="detail-label">Location</h3>
+        <p class="detail-text">Pune, India</p>
+      </div>
+
+      <div class="detail-item">
+        <h3 class="detail-label">Social Links</h3>
+        <ul class="social-links-list">
+          <li>
+            <a
+              href="https://github.com/ShubhamBanne19"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="social-link"
+              aria-label="GitHub (opens in new tab)"
+            >
+              GitHub
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://linkedin.com/in/shubham-banne1802"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="social-link"
+              aria-label="LinkedIn (opens in new tab)"
+            >
+              LinkedIn
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://x.com/BanneShubham"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="social-link"
+              aria-label="Twitter (opens in new tab)"
+            >
+              Twitter
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.instagram.com/shubhambanne19?igsh=cHJzNzMzY3pmbWhm"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="social-link"
+              aria-label="Instagram (opens in new tab)"
+            >
+              Instagram
+            </a>
+        </ul>
+      </div>
+    </div>
+  </section>
+</main>

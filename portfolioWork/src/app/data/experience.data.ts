@@ -54,61 +54,20 @@ export const EXPERIENCE: ExperienceItem[] = [
     description:
       'Frontend developer working on enterprise-scale Angular applications integrated with Node.js microservices and PostgreSQL.',
     responsibilities: [
-      //  // Core Frontend Engineering
-      // 'Designed and developed enterprise-grade Angular applications for internal platforms and client-facing systems.',
-      // 'Progressed from feature-level contributions to owning complete frontend modules, architecture decisions, and delivery accountability.',
-      // 'Built scalable, reusable Angular component libraries and shared UI patterns to standardize design across multiple applications.',
-      // 'Implemented clean component architecture with separation of concerns, maintainability, and testability in mind.',
-
-      // // Performance & Optimization
-      // 'Led frontend performance optimization initiatives using lazy loading, route-based code splitting, OnPush change detection, and RxJS best practices.',
-      // 'Resolved UI performance bottlenecks for data-heavy dashboards and large-scale tables.',
-      // 'Improved responsiveness and cross-device compatibility across student dashboards, home screens, and form-heavy workflows.',
-
-      // // Campus Solutions & Student CRM
-      // 'Contributed significantly to the Campus Solutions platform, with a strong focus on Student CRM modules.',
-      // 'Designed and implemented Student Landing Screens and Admission Management Landing Screens to streamline workflows.',
-      // 'Integrated dynamic forms, preview utilities, and admin screen templates to enhance configurability and reuse.',
-      // 'Ensured frontend flows aligned with enterprise security, compliance, and role-based access requirements.',
-
-      // // Deployment Tracker & Dashboards
-      // 'Designed and developed a high-visibility Deployment Tracker application to monitor application deployments and movements.',
-      // 'Built analytics dashboards using charts and tables to present operational and business metrics clearly.',
-      // 'Reduced manual operational effort by automating reporting and tracking workflows.',
-
-      // // Timetable Management System
-      // 'Designed and developed an interactive timetable management module with conflict detection.',
-      // 'Handled institute timings, faculty availability, room availability, holidays, and drag-and-drop scheduling.',
-      // 'Implemented advanced calendar features such as selectable periods, drag-to-create events, grouped events, and validation logic.',
-
-      // // Backend Collaboration & Data
-      // 'Collaborated closely with backend teams using Node.js and REST APIs for seamless frontend-backend integration.',
-      // 'Worked with PostgreSQL and MongoDB-backed services to handle large datasets and transactional workflows.',
-      // 'Participated in requirement analysis and API contract discussions with backend and business teams.',
-
-      // // Quality, Testing & Automation
-      // 'Introduced and maintained automated UI testing using Playwright to improve regression stability.',
-      // 'Created automation test scripts aligned with sprint test cases to support continuous regression testing.',
-      // 'Actively contributed to improving overall application quality by identifying UI defects and edge cases early.',
-
-      // // Agile & Cross-Team Collaboration
-      // 'Worked in Agile/Scrum environments, participating in sprint planning, daily stand-ups, reviews, and retrospectives.',
-      // 'Collaborated with QA, DevOps, and product stakeholders to ensure timely and high-quality releases.',
-      // 'Provided detailed technical documentation for frontend modules and shared utilities.',
-
-      // // Mentorship & Ownership
-      // 'Guided junior developers on Angular best practices, component design, and debugging techniques.',
-      // 'Reviewed code to enforce quality standards, consistency, and long-term maintainability.'
-      'Designed and delivered enterprise Angular applications used across internal and client-facing platforms.',
-      'Owned end-to-end frontend modules, from requirement understanding and UI architecture to production delivery.',
-      'Built reusable Angular component systems and standardized UI patterns across multiple applications.',
-      'Led performance optimizations using lazy loading, route-based code splitting, and RxJS best practices.',
-      'Developed data-intensive dashboards and business workflows, reducing manual operational effort.',
-      'Played a key role in Campus Solutions and Student CRM modules, including admin screens and landing pages.',
-      'Engineered interactive systems such as deployment trackers and timetable management with conflict validation.',
-      'Collaborated closely with backend (Node.js), QA, and DevOps teams in Agile delivery environments.',
-      'Introduced automated UI testing with Playwright to improve regression stability and release confidence.',
-      'Mentored junior developers and enforced frontend code quality and architectural standards.'
+      'Designed and developed enterprise-grade Angular applications for internal platforms and client-facing systems.',
+      'Owned complete frontend modules including architecture decisions, feature delivery, and production accountability.',
+      'Built scalable and reusable Angular component libraries with standardized UI patterns across multiple applications.',
+      'Implemented clean, maintainable component architecture following separation of concerns and testability principles.',
+      'Led frontend performance optimization using lazy loading, route-based code splitting, OnPush change detection, and RxJS best practices.',
+      'Improved UI responsiveness and resolved performance bottlenecks in data-heavy dashboards, tables, and form-driven workflows.',
+      'Played a key role in Campus Solutions and Student CRM modules, including student landing screens, admin templates, and admission workflows.',
+      'Developed high-visibility systems such as deployment trackers, analytics dashboards, and timetable management with conflict validation.',
+      'Collaborated closely with backend (Node.js, REST APIs, PostgreSQL/MongoDB), QA, DevOps, and business teams in Agile/Scrum environments.',
+      'Introduced Playwright-based UI automation, strengthened regression testing, mentored junior developers, and enforced frontend quality standards.',
+      'Designed dynamic form builders and preview utilities enabling configurable, metadata-driven UI generation.',
+      'Improved cross-browser compatibility and screen resolution consistency across desktop, tablet, and mobile devices.',
+      'Participated in requirement gathering, technical feasibility analysis, and frontend estimation for new modules.',
+      'Delivered comprehensive technical documentation covering reusable components, shared services, and frontend workflows.'
     ],
     technologies: [
       'Angular',

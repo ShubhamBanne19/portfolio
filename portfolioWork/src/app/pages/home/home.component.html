@@ -96,6 +96,13 @@
           </li>
           <li>
             <a
+              routerLink="/contact"
+              class="social-link"
+              >Contact Me</a
+            >
+          </li>
+          <li>
+            <a
               href="assets/ShubhamBanneResume.pdf"
               target="_blank"
               download="Shubham_Banne_Resume.pdf"
@@ -107,6 +114,7 @@
               Download Resume
             </a>
           </li>
+          
         </ul>
       </nav>
     </div>
@@ -133,7 +141,7 @@
         <p class="exp-desc" *ngIf="e.description">{{ e.description }}</p>
 
         <ul class="exp-responsibilities" *ngIf="e.responsibilities?.length">
-          <li *ngFor="let r of e.responsibilities">{{ r }}</li>
+          <li *ngFor="let r of e.responsibilities"> {{ r }}</li>
         </ul>
       </li>
     </ol>
