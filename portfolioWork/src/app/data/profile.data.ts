@@ -23,7 +23,7 @@ export const PROFILE: ProfileData = {
   headline: 'Frontend Developer - Angular & Node.js',
   shortTagline: 'Building scalable, high-performance enterprise web applications',
   summary:
-    'Frontend Developer with 3.7+ years of experience building scalable, high-performance applications using Angular and Node.js. Expertise in modular UI architecture, performance optimization, and RESTful microservice integration. Proven track record of delivering cloud-ready dashboards, reusable component libraries, and mentoring developers in Agile environments.',
+    'Frontend Developer with 3.10+ years of experience building scalable, high-performance applications using Angular and Node.js. Expertise in modular UI architecture, performance optimization, and RESTful microservice integration. Proven track record of delivering cloud-ready dashboards, reusable component libraries, and mentoring developers in Agile environments.',
   location: 'Pune, India',
   email: 'shubhambanne.work@gmail.com',
   phone: '+91 8999661297',

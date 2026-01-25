@@ -15,3 +15,6 @@ export type { Achievement } from './achievements.data';
 
 export { SEO } from './seo.data';
 export type { SEOData, OpenGraph } from './seo.data';
+
+export { CONTACT_DATA } from './contact.data';
+export type { ContactSection, ContactButton, ContactPageData } from './contact.data';

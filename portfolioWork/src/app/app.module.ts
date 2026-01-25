@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
 import { CaseStudyComponent } from './pages/case-study/case-study.component';
+import { ContactComponent } from './pages/contact/contact.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // import { routes } from './app-routing.module';
 import { RouterModule } from '@angular/router';
@@ -16,6 +17,7 @@ import { ProjectCardComponent } from './pages/project-card/project-card.componen
     AppComponent,
     HomeComponent,
     CaseStudyComponent,
+    ContactComponent,
     ProjectCardComponent
   ],
   imports: [
