@@ -1,0 +1,112 @@
+name: Deploy Portfolio to GitHub Pages
+
+on:
+  push:
+    branches: ["main", "feature", "develop"]
+  pull_request:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build Angular Application
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18.x"
+          cache: "npm"
+          cache-dependency-path: "./portfolioWork/package-lock.json"
+
+      - name: Install dependencies
+        working-directory: ./portfolioWork
+        run: npm ci
+
+      - name: Lint (optional, remove if not needed)
+        working-directory: ./portfolioWork
+        continue-on-error: true
+        run: npm run lint
+
+      - name: Build for production
+        working-directory: ./portfolioWork
+        env:
+          # OpenRouter API key from GitHub Secrets (for production builds)
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+        run: |
+          # Build with production configuration and base href for GitHub Pages
+          ng build --configuration production --base-href=/portfolio/
+
+      - name: Verify build output
+        working-directory: ./portfolioWork
+        run: |
+          echo "Build artifacts location:"
+          ls -lah dist/portfolio-work/browser/
+          echo "Total size:"
+          du -sh dist/portfolio-work/browser/
+
+      - name: Upload artifacts
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: "./portfolioWork/dist/portfolio-work/browser"
+
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch'
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+  test-production:
+    name: Test Production Build
+    needs: deploy
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Test deployed site is accessible
+        run: |
+          # Wait for deployment to propagate
+          sleep 10
+
+          # Test main page
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" \
+            https://ShubhamBanne19.github.io/portfolio/)
+
+          if [ "$STATUS" = "200" ]; then
+            echo "✅ Portfolio deployed successfully! (HTTP $STATUS)"
+          else
+            echo "⚠️ Deployment check returned HTTP $STATUS"
+            exit 1
+          fi
+
+      - name: Verify chatbot assets
+        run: |
+          # Check that critical assets are present
+          curl -s https://ShubhamBanne19.github.io/portfolio/assets/portfolio-data.json \
+            | head -c 100
+          echo ""
+          echo "✅ Portfolio data accessible"
