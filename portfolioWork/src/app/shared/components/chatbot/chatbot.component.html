@@ -1,0 +1,114 @@
+<!-- Chat Icon (Bottom Right) -->
+<div class="chatbot-container" [class.open]="isOpen">
+  <!-- Chat Window -->
+  <div class="chat-window" *ngIf="isOpen" [@slideUp]>
+    <!-- Header -->
+    <div class="chat-header">
+      <div class="header-content">
+        <div class="bot-info">
+          <div class="bot-name">
+            <span class="name">Shubham's AI Assistant</span>
+            <span class="online-badge"></span>
+          </div>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button
+          class="header-btn minimize-btn"
+          (click)="toggleMinimize()"
+          title="Minimize"
+          [attr.aria-label]="isMinimized ? 'Expand chat' : 'Minimize chat'"
+        >
+          <span class="icon">{{ isMinimized ? '⊕' : '−' }}</span>
+        </button>
+        <button
+          class="header-btn close-btn"
+          (click)="closeChat()"
+          title="Close"
+          aria-label="Close chat"
+        >
+          <span class="icon">×</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Messages Area (Collapsed when minimized) -->
+    <div class="chat-messages" *ngIf="!isMinimized">
+      <div
+        #messagesContainer
+        class="messages-container"
+        role="log"
+        aria-label="Chat messages"
+      >
+        <div
+          *ngFor="let msg of messages; trackBy: trackByMessageId"
+          class="message"
+          [class.user]="msg.role === 'user'"
+          [class.assistant]="msg.role === 'assistant'"
+          [class.error]="msg.error"
+        >
+          <div class="message-content">
+            <p class="message-text">
+              {{ msg.content }}
+            </p>
+            <span class="message-time" *ngIf="!msg.isLoading">
+              {{ getMessageTime(msg.timestamp) }}
+            </span>
+            <!-- Typing Indicator -->
+            <div class="typing-indicator" *ngIf="msg.isLoading">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Input Area (Hidden when minimized) -->
+    <div class="chat-input-area" *ngIf="!isMinimized">
+      <textarea
+        class="chat-input"
+        [(ngModel)]="userInput"
+        (keydown)="onKeyDown($event)"
+        placeholder="Ask me about Shubham's projects, skills, or experience..."
+        [disabled]="isLoading"
+        aria-label="Chat message input"
+        rows="1"
+      ></textarea>
+      <button
+        class="send-btn"
+        (click)="sendMessage()"
+        [disabled]="!userInput.trim() || isLoading"
+        title="Send message (Enter)"
+        aria-label="Send message"
+      >
+        <span class="send-icon">→</span>
+      </button>
+    </div>
+
+    <!-- Footer with Clear Button -->
+    <div class="chat-footer" *ngIf="!isMinimized">
+      <button
+        class="clear-btn"
+        (click)="clearHistory()"
+        title="Clear chat history"
+        aria-label="Clear chat history"
+      >
+        Clear History
+      </button>
+    </div>
+  </div>
+
+  <!-- Chat Toggle Icon (Bottom Right Floating Button) -->
+  <button
+    class="chat-toggle"
+    [class.open]="isOpen"
+    (click)="toggleChat()"
+    title="Open chat"
+    [attr.aria-label]="isOpen ? 'Close chat' : 'Open chat'"
+    aria-pressed="false"
+  >
+    <span class="chat-icon">💬</span>
+  </button>
+</div>
