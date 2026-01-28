@@ -228,7 +228,15 @@ $transition-normal: 300ms ease-in-out;
     }
   }
 
-  .message-content {
+  &.blocked {
+    justify-content: flex-start;
+
+    .message-content {
+      background: rgba(249, 115, 22, 0.15);
+      border: 1px solid rgba(249, 115, 22, 0.5);
+      color: #fed7aa;
+    }
+  }  .message-content {
     max-width: 85%;
     padding: $spacing-md;
     border-radius: $radius-md;

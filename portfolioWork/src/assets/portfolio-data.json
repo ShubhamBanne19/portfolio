@@ -1,0 +1,273 @@
+{
+    "profile": {
+        "name": "Shubham Sanjay Banne",
+        "headline": "Frontend Developer - Angular & Node.js",
+        "location": "Pune, India",
+        "email": "shubhambanne.work@gmail.com",
+        "phone": "+91 8999661297",
+        "summary": "Frontend Developer with 3.10+ years of experience building scalable, high-performance applications using Angular and Node.js. Expertise in modular UI architecture, performance optimization, and RESTful microservice integration. Proven track record of delivering cloud-ready dashboards, reusable component libraries, and mentoring developers in Agile environments.",
+        "availability": "Open to opportunities",
+        "github": "https://github.com/ShubhamBanne19",
+        "linkedin": "https://linkedin.com/in/shubham-banne1802"
+    },
+    "skills": {
+        "frontend": [
+            "Angular",
+            "TypeScript",
+            "RxJS",
+            "NgRx",
+            "SCSS/Sass",
+            "Angular Material",
+            "Responsive Design",
+            "Accessibility (WCAG)"
+        ],
+        "backend": [
+            "Node.js",
+            "Express.js",
+            "REST APIs",
+            "JWT Authentication",
+            "Microservices"
+        ],
+        "database": [
+            "PostgreSQL",
+            "MongoDB"
+        ],
+        "testing": [
+            "Playwright",
+            "Jasmine",
+            "Karma"
+        ],
+        "tools": [
+            "Git",
+            "Docker",
+            "GitHub Actions",
+            "Webpack",
+            "VS Code"
+        ]
+    },
+    "experience": [
+        {
+            "id": "exp-infosys-analyst",
+            "role": "Technology Analyst (Frontend Developer)",
+            "company": "Infosys Ltd.",
+            "startDate": "2021-12",
+            "endDate": null,
+            "location": "Pune, India (Remote/Hybrid)",
+            "description": "Leading frontend development on enterprise applications with Angular and TypeScript.",
+            "responsibilities": [
+                "Architected and developed StudentCRM system managing 10,000+ student records",
+                "Built deployment tracking dashboards with real-time analytics",
+                "Implemented role-based access control (RBAC) with secure data flow",
+                "Mentored junior developers on Angular best practices and performance optimization",
+                "Reduced bundle size by 40% through code splitting and lazy loading"
+            ],
+            "technologies": [
+                "Angular",
+                "TypeScript",
+                "Node.js",
+                "PostgreSQL",
+                "RxJS"
+            ]
+        },
+        {
+            "id": "exp-freelance-full-stack",
+            "role": "Full-Stack Developer",
+            "company": "Self-Employed",
+            "startDate": "2020-06",
+            "endDate": "2021-11",
+            "location": "Remote",
+            "description": "Built end-to-end web applications for various clients.",
+            "responsibilities": [
+                "Developed Tractor Dealer Platform improving sales productivity by 25%",
+                "Created Water Quality Monitoring IoT dashboard with real-time data visualization",
+                "Implemented smart scheduling with conflict detection",
+                "Designed and deployed full-stack MERN applications"
+            ],
+            "technologies": [
+                "Angular",
+                "React",
+                "Node.js",
+                "MongoDB",
+                "Arduino IoT"
+            ]
+        }
+    ],
+    "projects": [
+        {
+            "id": "student-crm",
+            "title": "StudentCRM",
+            "description": "Enterprise student management system with role-based access and live analytics.",
+            "role": "Frontend Developer",
+            "company": "Infosys",
+            "duration": "2021-2025",
+            "technologies": [
+                "Angular",
+                "Node.js",
+                "PostgreSQL",
+                "RBAC",
+                "Dashboards"
+            ],
+            "highlights": [
+                "Managed 10,000+ student records",
+                "Real-time analytics dashboards",
+                "Role-based access control",
+                "Secure data flow implementation",
+                "Performance optimization"
+            ],
+            "github": null,
+            "live": null
+        },
+        {
+            "id": "deployment-tracker",
+            "title": "Deployment Tracker",
+            "description": "Employee deployment tracking system with secure data flow and analytics.",
+            "role": "Frontend Engineer",
+            "company": "Infosys",
+            "duration": "2023-2024",
+            "technologies": [
+                "Angular",
+                "Charts",
+                "Enterprise UI",
+                "Data Visualization"
+            ],
+            "highlights": [
+                "Chart-driven dashboards",
+                "Employee tracking system",
+                "Secure data handling",
+                "UI performance optimization"
+            ],
+            "github": null,
+            "live": null
+        },
+        {
+            "id": "timetable-system",
+            "title": "Timetable Management System",
+            "description": "Smart scheduling system with drag-and-drop and conflict resolution.",
+            "technologies": [
+                "Angular",
+                "Drag & Drop",
+                "Real-time Validation"
+            ],
+            "highlights": [
+                "Smart scheduling algorithm",
+                "Real-time conflict detection",
+                "Drag-and-drop interface",
+                "Mobile responsive"
+            ],
+            "github": null,
+            "live": null
+        },
+        {
+            "id": "tractor-dealer",
+            "title": "Tractor Dealer Platform",
+            "description": "Full-stack platform for second-hand tractor sales with document workflows.",
+            "technologies": [
+                "Angular",
+                "Node.js",
+                "MongoDB"
+            ],
+            "highlights": [
+                "25% productivity improvement",
+                "Dynamic form handling",
+                "Document workflow automation",
+                "Full-stack MERN application"
+            ],
+            "github": "https://github.com/RavirajPawar/tractor-dealer",
+            "live": null
+        },
+        {
+            "id": "water-do-analyser",
+            "title": "Water Quality Monitoring System",
+            "description": "IoT dashboard for monitoring water quality parameters in real time.",
+            "technologies": [
+                "Angular",
+                "Node.js",
+                "Arduino",
+                "MongoDB",
+                "IoT"
+            ],
+            "highlights": [
+                "Arduino sensor integration",
+                "Real-time data visualization",
+                "Chart-driven dashboards",
+                "IoT connectivity"
+            ],
+            "github": "https://github.com/ShubhamBanne19/waterParameters",
+            "live": null
+        }
+    ],
+    "education": [
+        {
+            "degree": "Bachelor of Engineering",
+            "field": "Information Technology",
+            "institution": "Vishwakarma Institute of Technology, Pune",
+            "year": "2017-2021",
+            "gpa": "8.2/10",
+            "highlights": [
+                "Relevant coursework: Web Development, Database Systems, Cloud Computing",
+                "Active participation in tech clubs and competitions"
+            ]
+        }
+    ],
+    "achievements": [
+        "Published research on IoT water quality monitoring",
+        "Mentored 5+ junior developers on Angular and best practices",
+        "Reduced application bundle size by 40%",
+        "Improved application performance resulting in 50% faster load times",
+        "Delivered 5+ production applications for enterprise clients"
+    ],
+    "certifications": [
+        {
+            "title": "Angular Advanced Certification",
+            "issuer": "Udemy",
+            "year": 2023
+        },
+        {
+            "title": "Full Stack Web Development",
+            "issuer": "Coursera",
+            "year": 2022
+        }
+    ],
+    "keywords": {
+        "portfolio_related": [
+            "skill",
+            "project",
+            "experience",
+            "work",
+            "technology",
+            "tech",
+            "angular",
+            "typescript",
+            "node",
+            "frontend",
+            "backend",
+            "full-stack",
+            "development",
+            "developer",
+            "engineering",
+            "resume",
+            "cv",
+            "contact",
+            "email",
+            "github",
+            "linkedin",
+            "availability",
+            "hire",
+            "opportunity",
+            "job",
+            "position",
+            "role",
+            "company",
+            "education",
+            "degree",
+            "achievement",
+            "certification",
+            "contribution",
+            "portfolio",
+            "professional",
+            "career",
+            "expertise",
+            "proficiency"
+        ]
+    }
+}

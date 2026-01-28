@@ -19,7 +19,7 @@
           title="Minimize"
           [attr.aria-label]="isMinimized ? 'Expand chat' : 'Minimize chat'"
         >
-          <span class="icon">{{ isMinimized ? '⊕' : '−' }}</span>
+          <span class="icon">{{ isMinimized ? "⊕" : "−" }}</span>
         </button>
         <button
           class="header-btn close-btn"
@@ -46,6 +46,7 @@
           [class.user]="msg.role === 'user'"
           [class.assistant]="msg.role === 'assistant'"
           [class.error]="msg.error"
+          [class.blocked]="msg.isDomainBlocked"
         >
           <div class="message-content">
             <p class="message-text">

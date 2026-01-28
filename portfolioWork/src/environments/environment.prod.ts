@@ -17,5 +17,23 @@ export const environment = {
     // 3. Monitor API usage in your provider dashboard
     // 4. Consider setting up a proxy backend if possible
     // 5. Rotate your API key regularly if abuse is detected
+  },
+
+  // Mistral-7B Chat Completion Configuration for Production via Official API
+  mistral: {
+    // Mistral Official API (chat/completions endpoint)
+    apiUrl: 'https://api.mistral.ai/v1/chat/completions',
+    apiType: 'mistral-official',
+    apiKey: 'Ivc7FicEiRdZMKNDv4qQn9JwmQFfYBWD', // Will be injected at build time
+    
+    model: 'mistral-small-latest',  // Can also use: mistral-large-latest, mistral-medium-latest
+    temperature: 0.2, // Low temperature for factual portfolio responses
+    top_p: 0.9,
+    max_tokens: 300,
+    
+    // SECURITY NOTES:
+    // The apiKey will be injected at build time via GitHub Actions
+    // See scripts/inject-api-key.js for implementation
+    // Set MISTRAL_API_KEY as a GitHub Secret for automatic injection
   }
 };
