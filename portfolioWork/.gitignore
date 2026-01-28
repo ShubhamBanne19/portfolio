@@ -40,3 +40,13 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+# Environment variables (NEVER commit these)
+.env
+.env.local
+.env.*.local
+
+# Sensitive files
+*.key
+*.pem
+secrets.json
