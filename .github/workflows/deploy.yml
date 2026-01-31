@@ -46,11 +46,10 @@ jobs:
       - name: Build for production
         working-directory: ./portfolioWork
         env:
-          # OpenRouter API key from GitHub Secrets (for production builds)
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
         run: |
-          # Build with production configuration and base href for GitHub Pages
-          ng build --configuration production --base-href=/portfolio/
+          npx ng build --configuration production --base-href=/portfolio/
+
 
       - name: Verify build output
         working-directory: ./portfolioWork
