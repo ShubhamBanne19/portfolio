@@ -41,7 +41,7 @@ jobs:
       - name: Lint (optional, remove if not needed)
         working-directory: ./portfolioWork
         continue-on-error: true
-        run: npm run lint
+        run: npm run lint || true
 
       - name: Build for production
         working-directory: ./portfolioWork
@@ -55,14 +55,14 @@ jobs:
         working-directory: ./portfolioWork
         run: |
           echo "Build artifacts location:"
-          ls -lah dist/portfolio-work/browser/
+          ls -lah docs
           echo "Total size:"
-          du -sh dist/portfolio-work/browser/
+          du -sh docs
 
       - name: Upload artifacts
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "./portfolioWork/dist/portfolio-work/browser"
+          path: "docs"
 
   deploy:
     name: Deploy to GitHub Pages
