@@ -76,5 +76,20 @@ export const PROJECTS: ProjectItem[] = [
       'Integrated Arduino sensors to capture water quality data.',
       'Designed real-time dashboards with charts and tables.'
     ]
-  }
+  },
+  {
+  id: 'ai-emulator',
+  title: 'AI Emulator Platform',
+  short: 'AI-powered productivity emulator for task automation, feedback analysis, and performance insights.',
+  role: 'Full Stack Engineer',
+  company: 'Infosys',
+  tags: ['Angular', 'Node.js', 'AI Integration', 'REST APIs', 'Dashboards', 'Automation'],
+  contributions: [
+    'Developed AI-driven dashboards for productivity and workflow automation.',
+    'Integrated intelligent feedback analysis and performance insights using REST services.',
+    'Optimized real-time UI updates using RxJS and efficient state handling.',
+    'Built scalable backend APIs to support automation pipelines.'
+  ]
+}
+
 ];
