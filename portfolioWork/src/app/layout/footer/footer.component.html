@@ -1,4 +1,34 @@
-<footer>
-      <p>© {{ year }} Shubham Banne</p>
-      <small>Built with Angular • Performance-first • Accessible</small>
-    </footer>
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div class="footer-col footer-brand">
+      <a routerLink="/" class="footer-name">{{ profile.name }}</a>
+      <p class="footer-tagline">{{ profile.shortTagline }}</p>
+    </div>
+
+    <nav class="footer-col footer-links" aria-label="Footer">
+      <a routerLink="/">Home</a>
+      <a routerLink="/contact">Contact</a>
+      <a href="assets/ShubhamBanneResume.pdf" target="_blank" download="Shubham_Banne_Resume.pdf">Resume</a>
+    </nav>
+
+    <div class="footer-col footer-social">
+      <a
+        *ngFor="let s of profile.social; trackBy: trackBySocial"
+        [href]="s.url"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="footer-social-link"
+        [attr.aria-label]="s.label + ' (opens in new tab)'"
+      >
+        <app-icon [name]="s.icon"></app-icon>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-footer-bottom">
+    <p>© {{ year }} {{ profile.name }}. Built with Angular.</p>
+    <button type="button" class="back-to-top" (click)="scrollToTop()" aria-label="Back to top">
+      <app-icon name="arrow-up"></app-icon>
+    </button>
+  </div>
+</footer>

@@ -1,14 +1,3 @@
-<!-- CINEMATIC HERO ANIMATION: Premium Portfolio Opener -->
-<!-- <app-hero-animation
-  #heroAnimation
-  [profileName]="profile.name"
-  [roles]="['Senior Angular Developer', 'Technology Analyst']"
-  [autoPlay]="enableHeroAnimation"
-  [enableLoop]="false"
-  (animationComplete)="onHeroAnimationComplete()"
->
-</app-hero-animation> -->
-
 <main class="home" role="main" aria-labelledby="hero-title">
   <!-- HERO SECTION: Original Profile Hero with Photo -->
   <section class="hero" appReveal>
@@ -36,47 +25,22 @@
       <div class="hero-contact-card">
         <ul class="contact-information">
           <li>
-            <a class="hero-contact">
+            <div class="hero-contact">
               <span class="hero-item">
-                <svg class="hero-icon" viewBox="0 0 24 24" aria-hidden="true">
-                  <path
-                    d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"
-                  />
-                </svg>
+                <app-icon class="hero-icon" name="location"></app-icon>
                 <span class="hero-location">{{ profile.location }}</span>
               </span>
 
               <span class="hero-item">
-                <svg class="hero-icon" viewBox="0 0 24 24" aria-hidden="true">
-                  <path
-                    d="M20 4H4c-1.1 0-2 .9-2 2v12c0 
-                   1.1.9 2 2 2h16c1.1 0 
-                   2-.9 2-2V6c0-1.1-.9-2-2-2zm0 
-                   4-8 5-8-5V6l8 5 8-5v2z"
-                  />
-                </svg>
+                <app-icon class="hero-icon" name="email"></app-icon>
                 <span>{{ profile.email }}</span>
               </span>
 
               <span class="hero-item">
-                <svg class="hero-icon" viewBox="0 0 24 24" aria-hidden="true">
-                  <path
-                    d="M6.62 10.79a15.05 15.05 0 0 
-                   0 6.59 6.59l2.2-2.2a1 
-                   1 0 0 1 1.01-.24c1.12.37 
-                   2.33.57 3.58.57a1 
-                   1 0 0 1 1 1V20a1 
-                   1 0 0 1-1 1C10.85 21 
-                   3 13.15 3 3a1 1 0 0 
-                   1 1-1h3.5a1 1 0 0 1 
-                   1 1c0 1.25.2 2.46.57 
-                   3.59a1 1 0 0 1-.25 
-                   1.01l-2.2 2.19z"
-                  />
-                </svg>
+                <app-icon class="hero-icon" name="phone"></app-icon>
                 <span>{{ profile.phone }}</span>
               </span>
-            </a>
+            </div>
           </li>
         </ul>
       </div>
@@ -89,17 +53,14 @@
               [href]="s.url"
               target="_blank"
               rel="noopener noreferrer"
+              [attr.aria-label]="s.label + ' (opens in new tab)'"
             >
-              <span class="visually-hidden">{{ s.label }}</span>
-              <span aria-hidden="true">{{ s.label }}</span>
+              <app-icon [name]="s.icon"></app-icon>
+              <span>{{ s.label }}</span>
             </a>
           </li>
           <li>
-            <a
-              routerLink="/contact"
-              class="social-link"
-              >Contact Me</a
-            >
+            <a routerLink="/contact" class="social-link">Contact Me</a>
           </li>
           <li>
             <a
@@ -108,19 +69,28 @@
               download="Shubham_Banne_Resume.pdf"
               class="btn btn-primary resume-btn"
             >
-              <svg class="icon" viewBox="0 0 24 24">
-                <path d="M12 16l4-5h-3V4h-2v7H8l4 5zM5 20h14v-2H5v2z" />
-              </svg>
+              <app-icon name="download" class="icon"></app-icon>
               Download Resume
             </a>
           </li>
-          
         </ul>
       </nav>
     </div>
   </section>
+
+  <!-- ABOUT / STORY -->
+  <section class="about" aria-labelledby="about-heading" appReveal>
+    <h2 id="about-heading" class="visually-hidden">About</h2>
+    <p class="about-copy">{{ profile.aboutParagraph }}</p>
+  </section>
+
   <!-- EXPERIENCE -->
-  <section class="experience" aria-labelledby="experience-heading" appReveal>
+  <section
+    id="experience"
+    class="experience"
+    aria-labelledby="experience-heading"
+    appReveal
+  >
     <h2 id="experience-heading" class="section-title">Experience</h2>
     <ol class="experience-list">
       <li
@@ -141,14 +111,19 @@
         <p class="exp-desc" *ngIf="e.description">{{ e.description }}</p>
 
         <ul class="exp-responsibilities" *ngIf="e.responsibilities?.length">
-          <li *ngFor="let r of e.responsibilities"> {{ r }}</li>
+          <li *ngFor="let r of e.responsibilities">{{ r }}</li>
         </ul>
       </li>
     </ol>
   </section>
 
   <!-- PROJECTS -->
-  <section class="projects" aria-labelledby="projects-heading" appReveal>
+  <section
+    id="projects"
+    class="projects"
+    aria-labelledby="projects-heading"
+    appReveal
+  >
     <h2 id="projects-heading" class="section-title">Projects</h2>
 
     <div class="projects-grid" role="list">
@@ -163,7 +138,12 @@
   </section>
 
   <!-- SKILLS -->
-  <section class="skills" aria-labelledby="skills-heading" appReveal>
+  <section
+    id="skills"
+    class="skills"
+    aria-labelledby="skills-heading"
+    appReveal
+  >
     <h2 id="skills-heading" class="section-title">Skills</h2>
 
     <div class="skill-groups">
@@ -172,7 +152,13 @@
         class="skill-group"
         [attr.aria-label]="group.category"
       >
-        <h3 class="skill-category">{{ group.category }}</h3>
+        <h3 class="skill-category">
+          <app-icon
+            class="skill-category-icon"
+            [name]="skillCategoryIcon(group)"
+          ></app-icon>
+          {{ group.category }}
+        </h3>
         <ul class="skill-list">
           <li
             *ngFor="let s of group.skills; trackBy: trackBySkill"
@@ -183,6 +169,83 @@
           </li>
         </ul>
       </section>
+    </div>
+  </section>
+
+  <!-- BEYOND THE CODE -->
+  <section
+    id="beyond-the-code"
+    class="beyond-the-code"
+    aria-labelledby="beyond-heading"
+    appReveal
+  >
+    <h2 id="beyond-heading" class="section-title">Beyond the Code</h2>
+    <p class="section-intro">
+      Before Angular, there was mechanical engineering, a foundry floor, an IP
+      law diploma, and a Rangoli canvas. A rare lens most engineers don't have -
+      drag any node, or click one to see the cross-domain connections it draws
+      to everything else I build.
+    </p>
+    <app-polymath-graph></app-polymath-graph>
+  </section>
+
+  <!-- ACHIEVEMENTS -->
+  <section
+    id="achievements"
+    class="achievements"
+    aria-labelledby="achievements-heading"
+    appReveal
+  >
+    <h2 id="achievements-heading" class="section-title">
+      Achievements &amp; Certifications
+    </h2>
+
+    <div class="achievements-groups">
+      <div *ngIf="certifications.length">
+        <h3 class="skill-category">Certifications</h3>
+        <div class="achievements-grid">
+          <article
+            class="achievement-card"
+            *ngFor="let a of certifications; trackBy: trackByAchievement"
+          >
+            <app-icon class="achievement-icon" name="certificate"></app-icon>
+            <div>
+              <h4 class="achievement-title">{{ a.title }}</h4>
+              <p class="achievement-issuer" *ngIf="a.issuer">{{ a.issuer }}</p>
+              <p class="achievement-description" *ngIf="a.description">
+                {{ a.description }}
+              </p>
+              <a
+                *ngIf="a.link"
+                [href]="a.link"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="achievement-link"
+                >View credential →</a
+              >
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <div *ngIf="awards.length">
+        <h3 class="skill-category">Awards &amp; Recognition</h3>
+        <div class="achievements-grid">
+          <article
+            class="achievement-card"
+            *ngFor="let a of awards; trackBy: trackByAchievement"
+          >
+            <app-icon class="achievement-icon" name="award"></app-icon>
+            <div>
+              <h4 class="achievement-title">{{ a.title }}</h4>
+              <p class="achievement-issuer" *ngIf="a.issuer">{{ a.issuer }}</p>
+              <p class="achievement-description" *ngIf="a.description">
+                {{ a.description }}
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
     </div>
   </section>
 </main>

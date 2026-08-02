@@ -1,0 +1,131 @@
+<div class="polymath">
+  <!-- Legend -->
+  <div class="polymath-legend" role="group" aria-label="Filter by domain">
+    <button
+      type="button"
+      *ngFor="let key of domainKeys; trackBy: trackByDomainKey"
+      class="legend-pill"
+      [class.legend-pill-off]="!activeDomains.has(key)"
+      [style.--dot-color]="domains[key].color"
+      (click)="toggleDomain(key)"
+    >
+      <span class="legend-dot"></span>
+      {{ domains[key].label }}
+    </button>
+  </div>
+
+  <div class="polymath-body">
+    <!-- Graph -->
+    <svg
+      #svgRef
+      class="polymath-svg"
+      [attr.viewBox]="'0 0 ' + width + ' ' + height"
+      (click)="clearSelection()"
+      role="img"
+      aria-hidden="true"
+    >
+      <line
+        *ngFor="let l of links; let i = index; trackBy: trackByLinkIndex"
+        #linkLine
+        [class.link-cross]="isCross(l)"
+        [class.link-active]="touchesSelected(l)"
+        [class.link-dim]="isDim(l.s) || isDim(l.t)"
+      ></line>
+
+      <g
+        *ngFor="let n of nodes; trackBy: trackByNodeId"
+        #nodeGroup
+        class="node"
+        [class.node-dim]="isDim(n.id)"
+        [class.node-active]="selected === n.id || hovered === n.id"
+        [style.--node-color]="domains[n.domain].color"
+        (pointerdown)="onNodeDown(n.id, $event)"
+        (click)="selectNode(n.id, $event)"
+        (pointerenter)="setHovered(n.id)"
+        (pointerleave)="setHovered(null)"
+      >
+        <circle
+          *ngIf="selected === n.id"
+          class="node-ring"
+          [attr.r]="radius(n) + 7"
+        ></circle>
+        <circle class="node-dot" [attr.r]="radius(n)"></circle>
+        <text class="node-label" [attr.y]="radius(n) + 14">{{ n.label }}</text>
+      </g>
+    </svg>
+
+    <!-- Info panel -->
+    <div class="polymath-panel">
+      <ng-container *ngIf="!selectedNode">
+        <h3>Explore the connections</h3>
+        <p>
+          Click any skill to see how it links to the rest of my work - including
+          the
+          <strong>non-obvious cross-domain bridges</strong> (dashed lines) that
+          make this profile a polymath one.
+        </p>
+        <p class="polymath-hint">
+          A few to try: <em>Systems Thinking → Frontend Architecture</em>,
+          <em>IP Law → Claude API</em>, or
+          <em>Mechanical Engineering → Biomechanics Scoring</em>.
+        </p>
+      </ng-container>
+
+      <ng-container *ngIf="selectedNode as sel">
+        <div class="polymath-panel-domain">
+          <span
+            class="legend-dot"
+            [style.--dot-color]="domains[sel.domain].color"
+          ></span>
+          {{ domains[sel.domain].label }}
+        </div>
+        <h3 class="polymath-panel-title">{{ sel.label }}</h3>
+        <p class="polymath-panel-note">{{ sel.note }}</p>
+
+        <div class="polymath-divider"></div>
+        <h4 class="polymath-panel-subhead">
+          Connections ({{ connections.length }})
+        </h4>
+        <div class="polymath-connections">
+          <div
+            class="connection-card"
+            [class.connection-card-insight]="!!c.insight"
+            *ngFor="let c of connections; trackBy: trackByConnection"
+            (click)="selectNode(c.other.id, $event)"
+          >
+            <div class="connection-head">
+              <span
+                class="legend-dot"
+                [style.--dot-color]="domains[c.other.domain].color"
+              ></span>
+              <strong>{{ c.other.label }}</strong>
+              <span class="connection-badge" *ngIf="c.insight"
+                >polymath link</span
+              >
+            </div>
+            <p class="connection-insight" *ngIf="c.insight">{{ c.insight }}</p>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+
+  <!-- Screen-reader / crawler fallback: the graph above is decorative -->
+  <div class="visually-hidden">
+    <h3>Skills network - text alternative</h3>
+    <div *ngFor="let key of domainKeys; trackBy: trackByDomainKey">
+      <h4>{{ domains[key].label }}</h4>
+      <ul>
+        <ng-container *ngFor="let n of nodes">
+          <li *ngIf="n.domain === key">{{ n.label }}: {{ n.note }}</li>
+        </ng-container>
+      </ul>
+    </div>
+    <h4>Cross-domain insights</h4>
+    <ul>
+      <ng-container *ngFor="let l of links">
+        <li *ngIf="l.insight">{{ l.insight }}</li>
+      </ng-container>
+    </ul>
+  </div>
+</div>

@@ -1,14 +1,15 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-// import { ProjectCardComponent } from "../";
 import { RevealDirective } from "./directive/reveal.directive";
+import { IconComponent } from "./components/icon/icon.component";
+import { PolymathGraphComponent } from "./components/polymath-graph/polymath-graph.component";
 
 @NgModule({
-
-  imports: [CommonModule, RevealDirective],
+  imports: [CommonModule, RevealDirective, IconComponent, PolymathGraphComponent],
   exports: [
-    // ProjectCardComponent,
     RevealDirective,
+    IconComponent,
+    PolymathGraphComponent,
     CommonModule
   ]
 })

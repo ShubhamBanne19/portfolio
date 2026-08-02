@@ -1,0 +1,259 @@
+.polymath {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* ===== Legend ===== */
+.polymath-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.legend-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--dot-color, var(--color-accent));
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.legend-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  background: var(--glass-bg-clear);
+  border: 1px solid var(--dot-color, var(--glass-border));
+  color: var(--color-text-secondary);
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity var(--transition-fast), background var(--transition-fast);
+}
+
+.legend-pill-off {
+  opacity: 0.5;
+  border-color: var(--glass-border);
+}
+
+.legend-pill:hover {
+  background: var(--glass-bg-accent-subtle);
+}
+
+/* ===== Body layout ===== */
+.polymath-body {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.polymath-svg {
+  flex: 1 1 540px;
+  min-width: 280px;
+  aspect-ratio: 900 / 620;
+  background: radial-gradient(ellipse at 50% 40%, rgba(255, 255, 255, 0.03) 0%, transparent 70%), var(--bg-dark);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--glass-border);
+  touch-action: none;
+}
+
+/* ===== Links ===== */
+.polymath-svg line {
+  stroke: #3b4a6b;
+  stroke-width: 1;
+  opacity: 0.35;
+  transition: opacity var(--transition-fast);
+}
+
+.polymath-svg line.link-cross {
+  stroke: #7c8db5;
+  stroke-width: 1.4;
+  stroke-dasharray: 5 4;
+  opacity: 0.5;
+}
+
+.polymath-svg line.link-active {
+  stroke: var(--color-text-primary);
+  stroke-width: 2.2;
+  opacity: 0.9;
+}
+
+.polymath-svg line.link-dim {
+  opacity: 0.06;
+}
+
+/* ===== Nodes ===== */
+.node {
+  cursor: grab;
+  opacity: 1;
+  transition: opacity var(--transition-fast);
+}
+
+.node:active {
+  cursor: grabbing;
+}
+
+.node-dim {
+  opacity: 0.22;
+}
+
+.node-dot {
+  fill: var(--node-color, var(--color-accent));
+  stroke: var(--bg-dark);
+  stroke-width: 2;
+  transition: filter var(--transition-fast);
+}
+
+.node-active .node-dot {
+  filter: drop-shadow(0 0 10px var(--node-color, var(--color-accent)));
+}
+
+.node-ring {
+  fill: none;
+  stroke: var(--node-color, var(--color-accent));
+  stroke-width: 2;
+  opacity: 0.6;
+}
+
+.node-label {
+  text-anchor: middle;
+  font-size: 11.5px;
+  font-weight: 500;
+  fill: #cbd5e1;
+  pointer-events: none;
+  user-select: none;
+}
+
+.node-dim .node-label {
+  fill: #475569;
+}
+
+.node-active .node-label {
+  font-weight: 700;
+}
+
+/* ===== Info panel ===== */
+.polymath-panel {
+  flex: 1 1 280px;
+  min-width: 260px;
+  background: linear-gradient(135deg, var(--glass-bg-clear) 0%, var(--glass-bg-subtle) 100%);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  padding: 1.1rem 1.25rem;
+  min-height: 280px;
+  box-shadow: var(--shadow-glass);
+}
+
+.polymath-panel h3 {
+  margin: 0 0 0.6rem;
+  color: var(--color-text-primary);
+  font-size: 1.05rem;
+}
+
+.polymath-panel p {
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+}
+
+.polymath-panel p strong {
+  color: var(--color-text-primary);
+}
+
+.polymath-hint {
+  color: var(--color-text-tertiary);
+  font-size: 0.85rem !important;
+}
+
+.polymath-panel-domain {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-tertiary);
+}
+
+.polymath-panel-title {
+  margin: 0.5rem 0 0.4rem;
+  font-size: 1.3rem;
+}
+
+.polymath-panel-note {
+  color: var(--color-text-secondary);
+  margin-top: 0;
+}
+
+.polymath-divider {
+  height: 1px;
+  background: var(--glass-border);
+  margin: 0.9rem 0;
+}
+
+.polymath-panel-subhead {
+  margin: 0 0 0.6rem;
+  font-size: 0.78rem;
+  color: var(--color-text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.polymath-connections {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.connection-card {
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  padding: 0.55rem 0.7rem;
+  transition: border-color var(--transition-fast), background var(--transition-fast);
+}
+
+.connection-card:hover {
+  border-color: var(--glass-border-accent-hover);
+}
+
+.connection-card-insight {
+  background: var(--glass-bg-accent-subtle);
+  border-color: var(--glass-border-accent);
+}
+
+.connection-head {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.85rem;
+  color: var(--color-text-primary);
+}
+
+.connection-badge {
+  margin-left: auto;
+  font-size: 0.65rem;
+  color: var(--color-text-tertiary);
+  border: 1px solid var(--glass-border-accent);
+  border-radius: 999px;
+  padding: 1px 7px;
+  white-space: nowrap;
+}
+
+.connection-insight {
+  margin: 0.45rem 0 0 !important;
+  font-size: 0.8rem !important;
+  color: var(--color-text-tertiary) !important;
+}
+
+@media (max-width: 640px) {
+  .polymath-panel {
+    min-height: 0;
+  }
+}

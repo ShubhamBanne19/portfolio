@@ -1,11 +1,65 @@
-<article class="project">
-      <h2>{{ project.title }}</h2>
-      <h3>{{ project.subtitle }}</h3>
-      <p>{{ project.description }}</p>
+<main class="case-study-container" role="main" appReveal>
+  <ng-container *ngIf="project; else notFoundBlock">
+    <header class="case-study-header">
+      <h1>{{ project.title }}</h1>
+      <p class="subheading">{{ project.short }}</p>
 
-      <ul>
-        <li *ngFor="let tech of project.tech">{{ tech }}</li>
+      <div class="case-study-meta" *ngIf="project.role || project.company || project.timeline">
+        <div class="meta-item" *ngIf="project.role">
+          <span class="meta-label">Role</span>
+          <span class="meta-value">{{ project.role }}</span>
+        </div>
+        <div class="meta-item" *ngIf="project.company">
+          <span class="meta-label">Company</span>
+          <span class="meta-value">{{ project.company }}</span>
+        </div>
+        <div class="meta-item" *ngIf="project.timeline">
+          <span class="meta-label">Timeline</span>
+          <span class="meta-value">{{ project.timeline }}</span>
+        </div>
+      </div>
+    </header>
+
+    <section class="case-study-section" *ngIf="project.contributions?.length">
+      <h2>What I did</h2>
+      <ul class="contribution-list">
+        <li *ngFor="let c of project.contributions">{{ c }}</li>
       </ul>
+    </section>
 
-      <a [routerLink]="['/project', project.id]">View Case Study →</a>
-    </article>
+    <section class="case-study-section" *ngIf="project.tags?.length">
+      <h2>Tech stack</h2>
+      <div class="tech-stack">
+        <span class="tech-tag" *ngFor="let tag of project.tags">{{ tag }}</span>
+      </div>
+    </section>
+
+    <nav class="case-study-cta" aria-label="Project links">
+      <a
+        *ngIf="project.live"
+        [href]="project.live"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="cta-button primary"
+      >Live demo</a>
+      <a
+        *ngIf="project.repo"
+        [href]="project.repo"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="cta-button secondary"
+      >View code</a>
+      <button type="button" class="cta-button secondary" (click)="backToProjects()">← Back to projects</button>
+    </nav>
+  </ng-container>
+
+  <ng-template #notFoundBlock>
+    <header class="case-study-header">
+      <h1>Project not found</h1>
+      <p class="subheading">This case study doesn't exist or may have moved.</p>
+    </header>
+    <nav class="case-study-cta">
+      <button type="button" class="cta-button primary" (click)="backToProjects()">← Back to projects</button>
+    </nav>
+  </ng-template>
+</main>
