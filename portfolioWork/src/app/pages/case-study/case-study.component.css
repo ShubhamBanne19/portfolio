@@ -1,5 +1,5 @@
 /* ========================================
-   CASE STUDY — UNIFIED GLASS STYLING
+   CASE STUDY - UNIFIED GLASS STYLING
    Premium showcase using global glass system
 ======================================== */
 
@@ -111,6 +111,32 @@
   line-height: 1.8;
   font-size: 1rem;
   margin: 0;
+}
+
+/* ===== CONTRIBUTION LIST ===== */
+.contribution-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.contribution-list li {
+  position: relative;
+  padding-left: 1.4rem;
+  color: rgba(255, 255, 255, 0.78);
+  line-height: 1.7;
+  font-size: 1rem;
+}
+
+.contribution-list li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: #60a5fa;
+  opacity: 0.8;
 }
 
 /* ===== HIGHLIGHTS ===== */
@@ -228,6 +254,7 @@
   border-radius: 10px;
   font-weight: 700;
   font-size: 0.95rem;
+  font-family: inherit;
   letter-spacing: 0.01em;
   text-decoration: none;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);

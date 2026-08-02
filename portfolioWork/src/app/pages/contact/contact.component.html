@@ -27,6 +27,7 @@
         class="contact-card"
         [attr.aria-label]="section.title"
       >
+        <app-icon class="card-icon" [name]="section.icon"></app-icon>
         <h3 class="card-title">{{ section.title }}</h3>
         <p class="card-description">{{ section.description }}</p>
       </article>
@@ -54,17 +55,9 @@
           btn.label + (btn.external ? ' (opens in new tab)' : '')
         "
       >
+        <app-icon class="btn-icon" [name]="btn.icon"></app-icon>
         <span class="btn-label">{{ btn.label }}</span>
-        <svg
-          *ngIf="btn.external"
-          class="btn-icon"
-          viewBox="0 0 24 24"
-          aria-hidden="true"
-        >
-          <path
-            d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83l1.41 1.41L19 6.41V10h2V3h-7z"
-          />
-        </svg>
+        <app-icon *ngIf="btn.external" class="btn-icon btn-icon-external" name="external"></app-icon>
       </a>
     </nav>
   </section>
@@ -75,68 +68,46 @@
 
     <div class="contact-details">
       <div class="detail-item">
-        <h3 class="detail-label">Email</h3>
-        <a href="mailto:shubhambanne.work@gmail.com" class="detail-link">
-          shubhambanne.work@gmail.com
+        <h3 class="detail-label">
+          <app-icon name="email"></app-icon>
+          Email
+        </h3>
+        <a [href]="'mailto:' + profile.email" class="detail-link">
+          {{ profile.email }}
         </a>
       </div>
 
       <div class="detail-item">
-        <h3 class="detail-label">Phone</h3>
-        <a href="tel:+918999661297" class="detail-link"> +91 8999661297 </a>
+        <h3 class="detail-label">
+          <app-icon name="phone"></app-icon>
+          Phone
+        </h3>
+        <a [href]="telHref(profile.phone)" class="detail-link">{{ profile.phone }}</a>
       </div>
 
       <div class="detail-item">
-        <h3 class="detail-label">Location</h3>
-        <p class="detail-text">Pune, India</p>
+        <h3 class="detail-label">
+          <app-icon name="location"></app-icon>
+          Location
+        </h3>
+        <p class="detail-text">{{ profile.location }}</p>
       </div>
 
       <div class="detail-item">
         <h3 class="detail-label">Social Links</h3>
         <ul class="social-links-list">
-          <li>
+          <li *ngFor="let s of profile.social; trackBy: trackBySocial">
             <a
-              href="https://github.com/ShubhamBanne19"
+              [href]="s.url"
               target="_blank"
               rel="noopener noreferrer"
               class="social-link"
-              aria-label="GitHub (opens in new tab)"
+              [attr.aria-label]="s.label + ' (opens in new tab)'"
             >
-              GitHub
+              <app-icon [name]="s.icon"></app-icon>
+              <span>{{ s.label }}</span>
             </a>
           </li>
-          <li>
-            <a
-              href="https://linkedin.com/in/shubham-banne1802"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="social-link"
-              aria-label="LinkedIn (opens in new tab)"
-            >
-              LinkedIn
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://x.com/BanneShubham"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="social-link"
-              aria-label="Twitter (opens in new tab)"
-            >
-              Twitter
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://www.instagram.com/shubhambanne19?igsh=cHJzNzMzY3pmbWhm"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="social-link"
-              aria-label="Instagram (opens in new tab)"
-            >
-              Instagram
-            </a>
         </ul>
       </div>
     </div>

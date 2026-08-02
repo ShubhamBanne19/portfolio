@@ -1,8 +1,62 @@
-<header>
-  <a routerLink="/">SB</a>
-  <nav>
-    <a routerLink="/">Work</a>
-    <a routerLink="/contact">Contact</a>
-  </nav>
+<header class="site-header" [class.scrolled]="scrolled">
+  <div class="site-header-inner">
+    <a
+      routerLink="/"
+      class="brand"
+      (click)="closeMenu()"
+      aria-label="Shubham Banne - home"
+    >
+      SB<span class="brand-dot">.</span>
+    </a>
+
+    <button
+      type="button"
+      class="menu-toggle"
+      (click)="toggleMenu()"
+      [attr.aria-expanded]="menuOpen"
+      aria-controls="primary-nav"
+      aria-label="Toggle navigation menu"
+    >
+      <span class="menu-toggle-bar"></span>
+      <span class="menu-toggle-bar"></span>
+      <span class="menu-toggle-bar"></span>
+    </button>
+
+    <nav
+      id="primary-nav"
+      class="primary-nav"
+      [class.open]="menuOpen"
+      aria-label="Primary"
+    >
+      <ul class="nav-list">
+        <li *ngFor="let anchor of anchors; trackBy: trackByTargetId">
+          <a
+            href="#{{ anchor.targetId }}"
+            (click)="scrollToSection(anchor.targetId, $event)"
+            >{{ anchor.label }}</a
+          >
+        </li>
+        <li>
+          <a
+            routerLink="/contact"
+            routerLinkActive="active-link"
+            ariaCurrentWhenActive="page"
+            (click)="closeMenu()"
+            >Contact</a
+          >
+        </li>
+      </ul>
+
+      <a
+        href="assets/ShubhamBanneResume.pdf"
+        target="_blank"
+        download="Shubham_Banne_Resume.pdf"
+        class="nav-resume-btn"
+        (click)="closeMenu()"
+      >
+        <app-icon name="download"></app-icon>
+        Resume
+      </a>
+    </nav>
+  </div>
 </header>
-<app-header [navItems]="navItems"></app-header>

@@ -13,6 +13,8 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from './shared/shared.module';
 import { ProjectCardComponent } from './pages/project-card/project-card.component';
 import { ChatbotComponent } from './shared/components/chatbot/chatbot.component';
+import { HeaderComponent } from './layout/header/header.component';
+import { FooterComponent } from './layout/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { ChatbotComponent } from './shared/components/chatbot/chatbot.component'
     BrowserAnimationsModule,
     AppRoutingModule,
     SharedModule,
-    ChatbotComponent
+    ChatbotComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

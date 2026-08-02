@@ -1,11 +1,9 @@
-// src/app/shared/components/project-card/project-card.component.ts
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-// import { Project } from '../../../models/.model';
-import { Project } from 'src/app/models/project.model';
-
-import { RouterLink } from '@angular/router';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Subject, takeUntil } from 'rxjs';
+import { ProjectItem, PROJECTS } from 'src/app/data';
 import { SeoService } from 'src/app/core/services/seo.service';
+import { ScrollAnchorService } from 'src/app/core/services/scroll-anchor.service';
 
 @Component({
   selector: 'app-case-study',
@@ -13,15 +11,38 @@ import { SeoService } from 'src/app/core/services/seo.service';
   styleUrls: ['./case-study.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CaseStudyComponent implements OnInit{
-  @Input({ required: true }) project!: Project;
-   constructor(private seo: SeoService) {}
+export class CaseStudyComponent implements OnInit, OnDestroy {
+  project?: ProjectItem;
+
+  private readonly destroy$ = new Subject<void>();
+
+  constructor(
+    private route: ActivatedRoute,
+    private seo: SeoService,
+    private scrollAnchor: ScrollAnchorService
+  ) {}
 
   ngOnInit(): void {
-    this.seo.setSeo({
-      title: 'Portfolio — Case Study',
-      description: 'In-depth case study of a front-end project.'
+    this.route.paramMap.pipe(takeUntil(this.destroy$)).subscribe((params) => {
+      const id = params.get('id');
+      this.project = PROJECTS.find((p) => p.id === id);
+
+      this.seo.setSeo(
+        this.project
+          ? { title: `${this.project.title} — Case Study`, description: this.project.short }
+          : { title: 'Project not found' }
+      );
     });
   }
-  
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
+  backToProjects(): void {
+    this.scrollAnchor.goToSection('projects');
+  }
+
+
 }

@@ -23,10 +23,13 @@
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/robots.txt",
+              "src/sitemap.txt"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "src/app/styles/main.scss"
             ],
             "scripts": []
           },
@@ -35,7 +38,7 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
+                  "maximumWarning": "550kb",
                   "maximumError": "1mb"
                 },
                 {
@@ -85,10 +88,13 @@
             "tsConfig": "tsconfig.spec.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/robots.txt",
+              "src/sitemap.txt"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "src/app/styles/main.scss"
             ],
             "scripts": []
           }
